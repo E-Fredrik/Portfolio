@@ -293,8 +293,8 @@ export default function Hero() {
         />
       </svg>
 
-      {/* Top Left — name/brand */}
-      <div
+
+      {/* <div
         className="hero-frame absolute top-8 left-8 lg:top-10 lg:left-12 z-30 flex items-center gap-3"
         style={{ fontFamily: "Inter, sans-serif" }}
       >
@@ -315,7 +315,7 @@ export default function Hero() {
         </span>
       </div>
 
-      {/* Top Right — CONTACT button */}
+
       <a
         href="#contact"
         className="hero-frame absolute top-8 right-8 lg:top-10 lg:right-12 z-30 text-white"
@@ -329,10 +329,10 @@ export default function Hero() {
         }}
       >
         Contact
-      </a>
+      </a> */}
 
       {/* Top-right meta strip */}
-      <div
+      {/* <div
         className="hero-frame absolute top-10 right-44 z-30 hidden lg:flex items-center gap-3"
         style={{
           fontSize: "9px",
@@ -343,7 +343,7 @@ export default function Hero() {
       >
         <span style={{ color: "#333333" }}>STATUS</span>
         <span>AVAILABLE — Q3 2026</span>
-      </div>
+      </div> */}
 
       {/* Bottom-right scroll cue */}
       <div

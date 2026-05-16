@@ -9,6 +9,8 @@ import TechStack from "./components/TechStack";
 import Projects from "./components/Projects";
 import Timeline from "./components/Timeline";
 import Footer from "./components/Footer";
+import StaggeredMenu from "./components/StaggeredMenu";
+import type { StaggeredMenuItem } from "./components/StaggeredMenu";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -48,6 +50,59 @@ export default function App() {
     return () => cancelAnimationFrame(id);
   }, [loaded]);
 
+  const menuItems: StaggeredMenuItem[] = [
+    {
+      label: "Home",
+      ariaLabel: "Go to top",
+      link: "#",
+      onClick: (e) => {
+        e.preventDefault();
+        gsap.to(window, { duration: 1.2, ease: "power3.inOut", scrollTo: { y: 0, autoKill: true } });
+      },
+    },
+    {
+      label: "Stack",
+      ariaLabel: "View tech stack",
+      link: "#stack",
+      onClick: (e) => {
+        e.preventDefault();
+        smoothScrollTo("#stack");
+      },
+    },
+    {
+      label: "Work",
+      ariaLabel: "View projects",
+      link: "#work",
+      onClick: (e) => {
+        e.preventDefault();
+        smoothScrollTo("#work");
+      },
+    },
+    {
+      label: "Experience",
+      ariaLabel: "View experience",
+      link: "#experience",
+      onClick: (e) => {
+        e.preventDefault();
+        smoothScrollTo("#experience");
+      },
+    },
+    {
+      label: "Contact",
+      ariaLabel: "Get in touch",
+      link: "#contact",
+      onClick: (e) => {
+        e.preventDefault();
+        smoothScrollTo("#contact");
+      },
+    },
+  ];
+
+  const socialItems = [
+    { label: "GitHub", link: "https://github.com" },
+    { label: "LinkedIn", link: "https://linkedin.com" },
+  ];
+
   return (
     <div
       className="min-h-screen"
@@ -55,50 +110,20 @@ export default function App() {
     >
       {!loaded && <LoadingScreen onComplete={handleLoadComplete} />}
 
-      {/* Fixed minimal nav */}
-      <nav
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 lg:px-16 py-6"
-        style={{ background: "#000000" }}
-      >
-        <span
-          className="text-white"
-          style={{
-            fontSize: "13px",
-            fontWeight: 600,
-            letterSpacing: "-0.02em",
-            fontFamily: "Inter, sans-serif",
-          }}
-        >
-          FS<span style={{ color: "#333333" }}>/</span>DEV
-        </span>
-
-        <div className="hidden md:flex gap-10">
-          {[
-            { label: "Stack", href: "#stack" },
-            { label: "Work", href: "#work" },
-            { label: "Experience", href: "#experience" },
-            { label: "Contact", href: "#contact" },
-          ].map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={(e) => {
-                e.preventDefault();
-                smoothScrollTo(item.href);
-              }}
-              className="text-[#A1A1A6] hover:text-white transition-colors"
-              style={{
-                fontSize: "10px",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                fontFamily: "Inter, sans-serif",
-              }}
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-      </nav>
+      {/* StaggeredMenu Navigation */}
+      <StaggeredMenu
+        position="right"
+        isFixed={true}
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials={true}
+        displayItemNumbering={true}
+        menuButtonColor="#fff"
+        openMenuButtonColor="#fff"
+        changeMenuColorOnOpen={true}
+        colors={["#1a1a1a", "#111111"]}
+        accentColor="#A70947"
+      />
 
       <Hero />
       <div id="stack">
