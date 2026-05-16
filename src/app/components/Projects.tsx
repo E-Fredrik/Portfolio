@@ -42,14 +42,14 @@ interface Project {
 const PROJECTS: Project[] = [
   {
     label: "Case Study 01",
-    title: "Navi",
+    title: "Ciputra Color Run 2026",
     description:
-      "Event check-in SaaS with token-based consumption pricing. Multi-tenant data isolation via RLS policies. Real-time WebSocket attendance feeds.",
-    tags: ["NEXT.JS", "PRISMA", "WEBSOCKET", "SUPABASE"],
+      "Ciputra University's flagship event portal. Queue-based registration handling 5,000+ concurrent users with Redis pub/sub and optimistic locking to prevent overselling.",
+    tags: ["Next.js", "Prisma", "PostgreSQL"],
     images: [
       {
-        src: "/assets/images/Hero.JPG",
-        alt: "Navi dashboard showing token consumption",
+        src: "/assets/images/cirun.JPG",
+        alt: "Color Run ticketing queue interface",
         width: 520,
         height: 340,
       },
@@ -57,17 +57,24 @@ const PROJECTS: Project[] = [
   },
   {
     label: "Case Study 02",
-    title: "Color Run\n2026",
+    title: "Imperial F7 Kost Management System",
     description:
-      "Ciputra University's flagship event portal. Queue-based registration handling 5,000+ concurrent users with Redis pub/sub and optimistic locking to prevent overselling.",
-    tags: ["NEXT.JS", "REDIS", "BULL MQ", "POSTGRESQL"],
+      "End-to-end web app for managing boarding house operations. Features include dynamic room allocation, tenant billing with invoice generation, and maintenance request tracking. Built with Laravel Blade templates and MySQL backend.",
+    tags: ["Laravel Blade", "MySQL", "PHP", "Bootstrap JS & CSS"],
     images: [
       {
-        src: "/assets/images/Hero.JPG",
-        alt: "Color Run ticketing queue interface",
+        src: "/assets/images/imperial1.png",
+        alt: "Imperial F7 Kost Management System interface",
         width: 520,
         height: 340,
       },
+      {
+        src: "/assets/images/imperial2.png",
+        alt: "Imperial F7 Kost Management System dashboard",
+        width: 520,
+        height: 340,
+      },
+
     ],
   },
   {
