@@ -1,29 +1,28 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 gsap.registerPlugin(ScrollTrigger);
 
 const stack = [
   {
-    name: "Next.js 14",
+    name: "NextJS",
     role: "Application Framework",
     detail: "App Router, RSC, ISR with on-demand revalidation. Edge middleware for geo-routing and A/B experimentation.",
     snippet: "generateStaticParams()",
-    size: "large",
-  },
-  {
-    name: "Prisma ORM",
-    role: "Data Access Layer",
-    detail: "Type-safe database client with declarative schema migrations. Relation queries compiled to optimized SQL joins.",
-    snippet: "model Event { }",
     size: "medium",
   },
   {
-    name: "PostgreSQL",
-    role: "Relational Persistence",
-    detail: "ACID-compliant storage with GIN indexes for JSONB queries. Connection pooling via PgBouncer at 200 concurrent.",
-    snippet: "CREATE INDEX CONCURRENTLY",
+    name: "Laravel",
+    role: "Application Framework",
+    detail: "Eloquent ORM with model observers for domain events. Horizon for queue monitoring and Telescope for debugging.",
+    snippet: "php artisan make:model",
+    size: "medium",
+  },
+  {
+    name: "Python",
+    role: "Game Development & Scripting",
+    detail: "Pygame for 2D game development, leveraging Python's simplicity for rapid prototyping. Also used for build scripts and automation.",
+    snippet: "import pygame",
     size: "medium",
   },
   {
@@ -34,19 +33,33 @@ const stack = [
     size: "small",
   },
   {
-    name: "Docker",
-    role: "Containerization",
-    detail: "Multi-stage builds targeting slim Alpine images. Compose orchestration for local dev parity with production.",
-    snippet: "FROM node:20-alpine AS base",
+    name: "Kotlin / Jetpack Compose",
+    role: "Native Android Engineering",
+    detail: "Modern Android development with Jetpack Compose for declarative UI, Kotlin Coroutines for async, and Room for local data persistence.",
+    snippet: "@Composable fun",
     size: "small",
   },
   {
-    name: "Redis",
-    role: "In-Memory Cache / Queue",
-    detail: "Session store with 50μs P99 reads. BullMQ job queues for async email dispatch and webhook retries.",
-    snippet: "SUBSCRIBE channel:events",
+    name: "PostgreSQL/MySQL",
+    role: "Relational Database",
+    detail: "ACID-compliant storage with GIN indexes for JSONB queries. Connection pooling via PgBouncer at 200 concurrent.",
+    snippet: "CREATE INDEX CONCURRENTLY",
+    size: "medium",
+  },
+  {
+    name: "HTML/CSS/JS",
+    role: "Frontend Fundamentals",
+    detail: "Semantic HTML5, modern CSS with Flexbox and Grid, and vanilla JavaScript for DOM manipulation and interactivity.",
+    snippet: "document.querySelector()",
     size: "small",
   },
+  {
+    name: "Git/GitHub",
+    role: "Version Control & Collaboration",
+    detail: "Experience with Git workflows, branching strategies, and GitHub for code review and continuous integration.",
+    snippet: "git push origin main",
+    size: "small",
+  }
 ];
 
 export default function TechStack() {
@@ -110,14 +123,13 @@ export default function TechStack() {
               lineHeight: 1,
             }}
           >
-            Runtime &<br />Infrastructure
+            Languages &<br /> Tools
           </h2>
           <p
             className="text-[#A1A1A6] mt-6"
             style={{ fontSize: "13px", lineHeight: 1.7 }}
           >
-            Every tool chosen for a reason. Zero bloat, maximum control across
-            the entire request lifecycle.
+            Every tool mastered is a weapon in my arsenal. I leverage best-in-class technologies to build performant, scalable, and maintainable applications. Below are the core components of my current tech stack.
           </p>
         </div>
 
@@ -132,7 +144,7 @@ export default function TechStack() {
                   : "lg:col-span-1";
 
             // Simulate mid-animation staggered opacities
-            const staticOpacity = 1 - i * 0.12;
+            const staticOpacity = 1 - i * 0.06;
 
             return (
               <div

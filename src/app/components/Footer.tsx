@@ -64,7 +64,7 @@ export default function Footer() {
           </h2>
 
           <a
-            href="mailto:dev@fullstack.engineer"
+            href="mailto:elifele2006@gmail.com"
             className="inline-block text-[#A1A1A6] mt-4 hover:text-white transition-colors"
             style={{
               fontSize: "clamp(16px, 2vw, 24px)",
@@ -72,13 +72,13 @@ export default function Footer() {
               fontFamily: "monospace",
             }}
           >
-            dev@fullstack.engineer
+            elifele2006@gmail.com
           </a>
         </div>
 
         <div className="flex gap-4 mt-16">
           <a
-            href="https://github.com"
+            href="https://github.com/E-Fredrik"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 text-[#A1A1A6] hover:text-white transition-colors"
@@ -92,7 +92,7 @@ export default function Footer() {
             GitHub
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/e-fredrik"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-3 text-[#A1A1A6] hover:text-white transition-colors"

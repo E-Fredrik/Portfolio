@@ -378,7 +378,7 @@ export default function Hero() {
                 marginBottom: "32px",
               }}
             >
-              Senior Full Stack Engineer ——— Portfolio / 2026
+              Full Stack Developer | Part-Time Coding Mentor ——— Portfolio / 2026
             </p>
           </div>
           <div className="overflow-hidden">
@@ -407,7 +407,7 @@ export default function Hero() {
                 marginLeft: "8vw",
               }}
             >
-              F.I. JELIFTA
+              FREDRIK I.J
             </h1>
           </div>
           <div className="overflow-hidden mt-6">
@@ -422,7 +422,7 @@ export default function Hero() {
                 fontFamily: "Inter, sans-serif",
               }}
             >
-              ——— Full Stack Engineer · Next.js / Swift / PostgreSQL
+              ——— Universitas Ciputra '24 Informatics | Fullstack Developer ——— 
             </h2>
           </div>
         </div>

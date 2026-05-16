@@ -418,7 +418,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             />
           ) : (
             <span className="sm-logo-text">
-              FS<span className="sm-logo-slash">/</span>DEV
+              E<span className="sm-logo-slash">/</span>F
             </span>
           )}
         </div>
