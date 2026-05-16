@@ -19,10 +19,15 @@ const NAV_OFFSET = 72;
 function smoothScrollTo(href: string) {
   const target = document.querySelector(href);
   if (!target) return;
+
+  // Ensure ScrollTrigger pin spacers are measured correctly before scrolling
+  ScrollTrigger.refresh();
+
   gsap.to(window, {
     duration: 1.2,
     ease: "power3.inOut",
-    scrollTo: { y: target as Element, offsetY: NAV_OFFSET, autoKill: true },
+    scrollTo: { y: target as Element, offsetY: NAV_OFFSET, autoKill: false },
+    overwrite: true,
   });
 }
 
@@ -57,7 +62,7 @@ export default function App() {
       link: "#",
       onClick: (e) => {
         e.preventDefault();
-        gsap.to(window, { duration: 1.2, ease: "power3.inOut", scrollTo: { y: 0, autoKill: true } });
+        gsap.to(window, { duration: 1.2, ease: "power3.inOut", scrollTo: { y: 0, autoKill: false }, overwrite: true });
       },
     },
     {
