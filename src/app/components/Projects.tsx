@@ -48,7 +48,7 @@ const PROJECTS: Project[] = [
     tags: ["Next.js", "Prisma", "PostgreSQL"],
     images: [
       {
-        src: "/assets/images/cirun.JPG",
+        src: "./assets/images/cirun.jpg",
         alt: "Color Run ticketing queue interface",
         width: 520,
         height: 340,
@@ -63,13 +63,13 @@ const PROJECTS: Project[] = [
     tags: ["Laravel Blade", "MySQL", "PHP", "Bootstrap JS & CSS"],
     images: [
       {
-        src: "/assets/images/imperial1.png",
+        src: "./assets/images/imperial1.png",
         alt: "Imperial F7 Kost Management System interface",
         width: 520,
         height: 340,
       },
       {
-        src: "/assets/images/imperial2.png",
+        src: "./assets/images/imperial2.png",
         alt: "Imperial F7 Kost Management System dashboard",
         width: 520,
         height: 340,
@@ -84,7 +84,7 @@ const PROJECTS: Project[] = [
     tags: ["Kotlin", "PostgreSQL", "REST API"],
     images: [
       {
-        src: "/assets/images/nudge.png",
+        src: "./assets/images/nudge.png",
         alt: "Nudge app interface",
         width: 520,
         height: 550,
@@ -99,7 +99,7 @@ const PROJECTS: Project[] = [
     tags: ["Next.js", "Prisma", "PostgreSQL"],
     images: [
       {
-        src: "/assets/images/navi.png",
+        src: "./public/assets/images/navi.png",
         alt: "NAVI Digital Guestbook dashboard interface",
         width: 520,
         height: 340,

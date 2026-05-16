@@ -29,7 +29,8 @@ export default function Hero() {
 
   useEffect(() => {
     const img = new window.Image();
-    img.src = 'assets/images/hero.jpg';
+    // Using basePath via window.location.pathname ensures it works everywhere
+    img.src = './assets/images/Hero.JPG';
     img.onload = () => { imgRef.current = img; };
   }, []);
 
