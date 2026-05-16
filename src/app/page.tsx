@@ -1,18 +1,30 @@
 "use client";
-
 import { useCallback, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import LoadingScreen from "./components/LoadingScreen";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import LoadingScreen  from "./components/LoadingScreen";
 import Hero from "./components/Hero";
 import TechStack from "./components/TechStack";
 import Projects from "./components/Projects";
 import Timeline from "./components/Timeline";
 import Footer from "./components/Footer";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-export default function Home() {
+const NAV_OFFSET = 72;
+
+function smoothScrollTo(href: string) {
+  const target = document.querySelector(href);
+  if (!target) return;
+  gsap.to(window, {
+    duration: 1.2,
+    ease: "power3.inOut",
+    scrollTo: { y: target as Element, offsetY: NAV_OFFSET, autoKill: true },
+  });
+}
+
+export default function App() {
   const [loaded, setLoaded] = useState(false);
 
   const handleLoadComplete = useCallback(() => {
@@ -28,16 +40,12 @@ export default function Home() {
       };
     }
 
-    // Refresh all scroll triggers after loading screen exits
-    ScrollTrigger.refresh();
-
     ScrollTrigger.defaults({
       toggleActions: "play none none reverse",
     });
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+    const id = requestAnimationFrame(() => ScrollTrigger.refresh());
+    return () => cancelAnimationFrame(id);
   }, [loaded]);
 
   return (
@@ -74,6 +82,10 @@ export default function Home() {
             <a
               key={item.label}
               href={item.href}
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollTo(item.href);
+              }}
               className="text-[#A1A1A6] hover:text-white transition-colors"
               style={{
                 fontSize: "10px",
