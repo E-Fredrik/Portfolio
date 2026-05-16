@@ -6,32 +6,32 @@ gsap.registerPlugin(ScrollTrigger);
 
 const roles = [
   {
-    period: "2025 — Present",
-    title: "Development Team Lead (6 Engineers)",
-    org: "Product Engineering",
+    period: "June 2024 — Present",
+    title: "Part-time Coding Mentor",
+    org: "Timedoor Academy",
     detail:
-      "Architecting microservices decomposition from a monolith. Introduced trunk-based development, reducing merge conflicts by 73%. Owning sprint planning, code review standards, and on-call rotation.",
+      "Guided students through various courses in varied programming languages, resulting in 100% of the class with a working project",
   },
   {
-    period: "2024 — 2025",
+    period: "May 2025 — May 2026",
     title: "IT Division Coordinator",
-    org: "University Tech Operations",
+    org: "Universitas Ciputra International Committee (UCIC)",
     detail:
-      "Coordinated infrastructure provisioning across 4 development squads. Migrated legacy PHP systems to Next.js with zero downtime. Managed CI/CD pipelines serving 12 production applications.",
+      "Developed and maintained the official WordPress website of CaGE, creating a centralized digital hub, improving the University’s international presence.",
   },
   {
-    period: "2023 — 2024",
-    title: "Coding Mentor & Workshop Lead",
-    org: "Developer Community",
+    period: "October 2025 — April 2026",
+    title: "PDD Website Coordinator",
+    org: "Universitas Ciputra Fair & Color Run 2026",
     detail:
-      "Conducted 40+ hours of TypeScript and systems design workshops. Mentored 15 junior developers through production-ready project deliveries. Built internal tooling curriculum from scratch.",
+      "Developed a dynamic website for the Ciputra Color Run registration portal to handle both individual and group ticketing alongside race pack claims, ensuring seamless data processing for 1500 runners and reducing queue times during peak hours.",
   },
   {
-    period: "2022 — 2023",
-    title: "Full Stack Developer",
-    org: "Freelance & Contract",
+    period: "May 2024 — May 2024",
+    title: "Intern Coding Mentor",
+    org: "Timedoor Academy",
     detail:
-      "Shipped 8 production applications spanning Next.js, React Native, and Swift. Clients included event platforms, e-commerce, and internal enterprise tools.",
+      "Assisted in the preparation and delivery of the programming curricula and optimized classroom workflows, ensuring high student engagement while transitioning to a part-time coding mentor rule.",
   },
 ];
 

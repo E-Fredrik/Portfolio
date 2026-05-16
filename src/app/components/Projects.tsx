@@ -30,6 +30,39 @@ interface Project {
   tags: string[];
   /** Images stacked vertically on the left side */
   images: ProjectImage[];
+  browserUrl: string; // Optional URL to display in the browser frame
+}
+
+function BrowserFrame({
+  url,
+  children,
+}: {
+  url: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="w-full max-w-[520px]" style={{ border: "1px solid #333333" }}>
+      <div
+        className="flex items-center gap-2 px-5 py-3"
+        style={{ borderBottom: "1px solid #333333" }}
+      >
+        {[0, 1, 2].map((i) => (
+          <div
+            key={i}
+            className="w-[6px] h-[6px] rounded-full"
+            style={{ border: "1px solid #333333" }}
+          />
+        ))}
+        <span
+          className="text-[#A1A1A6] ml-4"
+          style={{ fontSize: "10px", fontFamily: "monospace" }}
+        >
+          {url}
+        </span>
+      </div>
+      <div className="p-6">{children}</div>
+    </div>
+  );
 }
 
 /* ------------------------------------------------------------------ */
@@ -54,6 +87,7 @@ const PROJECTS: Project[] = [
         height: 340,
       },
     ],
+    browserUrl: "ciputrarun.com"
   },
   {
     label: "Case Study 02",
@@ -76,6 +110,7 @@ const PROJECTS: Project[] = [
       },
 
     ],
+    browserUrl: "imperialf7.com"
   },
   {
     label: "Case Study 03",
@@ -90,6 +125,7 @@ const PROJECTS: Project[] = [
         height: 550,
       },
     ],
+    browserUrl: "nudgeapp.com"
   },
   {
     label: "Case Study 04",
@@ -99,12 +135,13 @@ const PROJECTS: Project[] = [
     tags: ["Next.js", "Prisma", "PostgreSQL"],
     images: [
       {
-        src: "./public/assets/images/navi.png",
+        src: "./assets/images/navi.png",
         alt: "NAVI Digital Guestbook dashboard interface",
         width: 520,
         height: 340,
       },
     ],
+    browserUrl: "naviguestbook.com"
   }
 ];
 
@@ -120,14 +157,15 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-0">
       {/* Images Column — on left for even, on right for odd (desktop) */}
+      
       <div
         className={`flex flex-col gap-4 p-8 lg:p-12 justify-center ${
           !isEven ? "lg:order-2" : ""
         }`}
       >
         {project.images.map((img, imgIdx) => (
+          <BrowserFrame key={imgIdx} url={project.browserUrl}>
           <div
-            key={imgIdx}
             className="relative w-full overflow-hidden"
             style={{
               maxWidth: `${img.width}px`,
@@ -142,6 +180,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               style={{ objectFit: "cover" }}
             />
           </div>
+          </BrowserFrame>
         ))}
       </div>
 
