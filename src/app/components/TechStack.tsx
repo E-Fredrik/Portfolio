@@ -170,7 +170,7 @@ export default function TechStack() {
                   >
                     {item.role}
                   </span>
-                  <code
+                  {/* <code
                     style={{
                       fontSize: "9px",
                       fontFamily: "monospace",
@@ -178,7 +178,7 @@ export default function TechStack() {
                     }}
                   >
                     {item.snippet}
-                  </code>
+                  </code> */}
                 </div>
 
                 {/* Bottom content */}

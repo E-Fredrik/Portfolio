@@ -66,15 +66,6 @@ export default function App() {
       },
     },
     {
-      label: "Stack",
-      ariaLabel: "View tech stack",
-      link: "#stack",
-      onClick: (e) => {
-        e.preventDefault();
-        smoothScrollTo("#stack");
-      },
-    },
-    {
       label: "Work",
       ariaLabel: "View projects",
       link: "#work",
@@ -90,6 +81,15 @@ export default function App() {
       onClick: (e) => {
         e.preventDefault();
         smoothScrollTo("#experience");
+      },
+    },
+    {
+      label: "Stack",
+      ariaLabel: "View tech stack",
+      link: "#stack",
+      onClick: (e) => {
+        e.preventDefault();
+        smoothScrollTo("#stack");
       },
     },
     {
@@ -131,14 +131,14 @@ export default function App() {
       />
 
       <Hero />
-      <div id="stack">
-        <TechStack />
-      </div>
       <div id="work">
         <Projects />
       </div>
       <div id="experience">
         <Timeline />
+      </div>
+      <div id="stack">
+        <TechStack />
       </div>
       <div id="contact">
         <Footer />
