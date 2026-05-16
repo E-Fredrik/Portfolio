@@ -368,7 +368,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   React.useEffect(() => {
     if (!closeOnClickAway || !open) return;
 
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (
         panelRef.current &&
         !panelRef.current.contains(event.target as Node) &&
@@ -380,8 +380,10 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     };
 
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
     };
   }, [closeOnClickAway, open, closeMenu]);
 
@@ -459,10 +461,15 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     aria-label={it.ariaLabel}
                     data-index={idx + 1}
                     onClick={(e) => {
-                      if (it.onClick) {
-                        it.onClick(e);
-                        closeMenu();
-                      }
+                      e.preventDefault();
+                      closeMenu();
+                      // Delay scroll until close animation finishes so the
+                      // fixed overlay doesn't block the GSAP scrollTo tween
+                      setTimeout(() => {
+                        if (it.onClick) {
+                          it.onClick(e);
+                        }
+                      }, 350);
                     }}
                   >
                     <span className="sm-panel-itemLabel">{it.label}</span>

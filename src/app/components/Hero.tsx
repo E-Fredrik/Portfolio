@@ -25,6 +25,7 @@ export default function Hero() {
   const rafRef = useRef<number | null>(null);
   const particlesRef = useRef<WaveParticle[]>([]);
   const imgRef = useRef<HTMLImageElement | null>(null);
+  const isTouchRef = useRef(false);
   const [hud, setHud] = useState({ x: 0, y: 0, active: false });
 
   useEffect(() => {
@@ -166,6 +167,8 @@ export default function Hero() {
   }, []);
 
   const onMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    // Ignore mouse events if we detected touch input (prevents duplicate firing)
+    if (isTouchRef.current) return;
     const section = sectionRef.current;
     if (!section) return;
     const rect = section.getBoundingClientRect();
@@ -182,6 +185,39 @@ export default function Hero() {
   }, []);
 
   const onLeave = useCallback(() => {
+    targetRef.current.active = false;
+    setHud((h) => ({ ...h, active: false }));
+  }, []);
+
+  // --- Touch event handlers for mobile/tablet ---
+  const onTouchStart = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
+    isTouchRef.current = true;
+    const section = sectionRef.current;
+    if (!section) return;
+    const touch = e.touches[0];
+    const rect = section.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    currentRef.current.x = x;
+    currentRef.current.y = y;
+    lastEmitRef.current.x = x;
+    lastEmitRef.current.y = y;
+    targetRef.current = { x, y, active: true };
+    setHud({ x: Math.round(x), y: Math.round(y), active: true });
+  }, []);
+
+  const onTouchMove = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const touch = e.touches[0];
+    const rect = section.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    targetRef.current = { x, y, active: true };
+    setHud({ x: Math.round(x), y: Math.round(y), active: true });
+  }, []);
+
+  const onTouchEnd = useCallback(() => {
     targetRef.current.active = false;
     setHud((h) => ({ ...h, active: false }));
   }, []);
@@ -215,8 +251,11 @@ export default function Hero() {
       ref={sectionRef}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
       className="h-screen w-full relative overflow-hidden cursor-none"
-      style={{ background: "#000000" }}
+      style={{ background: "#000000", touchAction: "pan-y" }}
     >
       {/* ========== COVER LAYER ========== */}
       {/* Etched geometric pattern (SVG, zero gradients) */}
@@ -439,7 +478,7 @@ export default function Hero() {
       {/* Cursor crosshair */}
       <div
         ref={cursorRef}
-        className="absolute top-0 left-0 z-50 pointer-events-none"
+        className="absolute top-0 left-0 z-50 pointer-events-none hidden md:block"
         style={{
           opacity: hud.active ? 1 : 0,
           transition: "opacity 200ms linear",
@@ -477,7 +516,7 @@ export default function Hero() {
       {/* HUD annotation following cursor */}
       <div
         ref={hudRef}
-        className="absolute top-0 left-0 z-50 pointer-events-none"
+        className="absolute top-0 left-0 z-50 pointer-events-none hidden md:block"
         style={{
           opacity: hud.active ? 1 : 0,
           transition: "opacity 200ms linear",

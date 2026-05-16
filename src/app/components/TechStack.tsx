@@ -149,7 +149,7 @@ export default function TechStack() {
             return (
               <div
                 key={item.name}
-                className={`stack-card ${colSpan} p-6 lg:p-8 flex flex-col justify-between relative`}
+                className={`stack-card ${colSpan} p-6 pb-16 lg:p-8 lg:pb-8 flex flex-col justify-between relative`}
                 style={{
                   border: "1px solid #333333",
                   marginTop: "-1px",
@@ -182,7 +182,7 @@ export default function TechStack() {
                 </div>
 
                 {/* Bottom content */}
-                <div>
+                <div className="relative z-[1]">
                   <h3
                     className="text-white"
                     style={{
@@ -201,14 +201,14 @@ export default function TechStack() {
                   </p>
                 </div>
 
-                {/* Corner index */}
+                {/* Corner index — stays behind text on mobile */}
                 <span
-                  className="absolute bottom-3 right-4 text-[#1a1a1a]"
+                  className="absolute bottom-3 right-4 text-[#1a1a1a] text-[36px] md:text-[48px]"
                   style={{
-                    fontSize: "48px",
                     fontWeight: 800,
                     fontFamily: "Inter, sans-serif",
                     lineHeight: 1,
+                    zIndex: 0,
                   }}
                 >
                   {String(i + 1).padStart(2, "0")}
