@@ -29,7 +29,7 @@ export default function Hero() {
 
   useEffect(() => {
     const img = new window.Image();
-    img.src = '/assets/images/hero.jpg';
+    img.src = 'assets/images/hero.jpg';
     img.onload = () => { imgRef.current = img; };
   }, []);
 

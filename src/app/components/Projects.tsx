@@ -79,79 +79,33 @@ const PROJECTS: Project[] = [
   },
   {
     label: "Case Study 03",
-    title: "Vault",
-    description:
-      "Custom OAuth 2.0 identity provider with PKCE flow, refresh token rotation, and RBAC policies. Handles 40k+ monthly active sessions across 6 client applications with sub-100ms token introspection.",
-    tags: ["NODE.JS", "REDIS", "POSTGRESQL", "JWT"],
+    title: "Nudge",
+    description: "An android app that helps users to keep track of their calories, implementing EMA (Ecological Momentary Assessment) to send notifications at the right time. Built with Kotlin, PostgreSQL and REST API.",
+    tags: ["Kotlin", "PostgreSQL", "REST API"],
     images: [
       {
-        src: "/assets/images/Hero.JPG",
-        alt: "Vault session monitor dashboard",
+        src: "/assets/images/nudge.png",
+        alt: "Nudge app interface",
         width: 520,
-        height: 340,
+        height: 550,
       },
     ],
   },
   {
     label: "Case Study 04",
-    title: "Pulse",
+    title: "NAVI Digital Guestbook",
     description:
-      "Real-time analytics pipeline ingesting 8,400 events/sec from client SDKs. Kafka consumers partition data into ClickHouse for sub-second OLAP queries. Custom session stitching algorithm with 99.2% attribution accuracy.",
-    tags: ["KAFKA", "CLICKHOUSE", "NEXT.JS", "WEBSOCKET"],
+      "A digital guestbook system for events, allowing attendees to check in with QR Codes, Digital Angpao tracking as well as custom Email Builders. Built with Next.js, Prisma and PostgreSQL.",
+    tags: ["Next.js", "Prisma", "PostgreSQL"],
     images: [
       {
-        src: "/assets/images/Hero.JPG",
-        alt: "Pulse event stream dashboard",
+        src: "/assets/images/navi.png",
+        alt: "NAVI Digital Guestbook dashboard interface",
         width: 520,
         height: 340,
       },
     ],
-  },
-  {
-    label: "Case Study 05",
-    title: "Forge",
-    description:
-      "Internal CI/CD orchestration platform. DAG-based pipeline execution with parallel stage scheduling, artifact caching via S3-compatible storage, and Slack/Discord webhook notifications on failure states.",
-    tags: ["GO", "DOCKER", "POSTGRESQL", "REDIS"],
-    images: [
-      {
-        src: "/assets/images/Hero.JPG",
-        alt: "Forge pipeline execution view",
-        width: 520,
-        height: 340,
-      },
-    ],
-  },
-  {
-    label: "Case Study 06",
-    title: "Relay",
-    description:
-      "Centralized webhook ingestion gateway. Signature verification (HMAC-SHA256), exponential backoff retry with dead-letter queues, and fan-out routing to internal consumers. Processes 142k webhooks daily with idempotency guarantees.",
-    tags: ["NODE.JS", "BULL MQ", "REDIS", "POSTGRESQL"],
-    images: [
-      {
-        src: "/assets/images/Hero.JPG",
-        alt: "Relay webhook endpoints dashboard",
-        width: 520,
-        height: 340,
-      },
-    ],
-  },
-  {
-    label: "Case Study 07",
-    title: "Atlas",
-    description:
-      "Monorepo-hosted design system powering 4 production apps. Compound component architecture with composable slots, CSS-variable-driven theming, and automated visual regression testing via Chromatic.",
-    tags: ["REACT", "STORYBOOK", "CHROMATIC", "NPM"],
-    images: [
-      {
-        src: "/assets/images/Hero.JPG",
-        alt: "Atlas component registry",
-        width: 520,
-        height: 340,
-      },
-    ],
-  },
+  }
 ];
 
 /* ------------------------------------------------------------------ */
