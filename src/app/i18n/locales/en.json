@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "home": "Home",
+    "homeAria": "Go to top",
+    "work": "Work",
+    "workAria": "View projects",
+    "experience": "Experience",
+    "experienceAria": "View experience",
+    "stack": "Stack",
+    "stackAria": "View tech stack",
+    "contact": "Contact",
+    "contactAria": "Get in touch",
+    "menu": "Menu",
+    "close": "Close",
+    "socials": "Socials"
+  },
+  "hero": {
+    "subtitle": "Full Stack Developer | Part-Time Coding Mentor ——— Portfolio / 2026",
+    "tagline": "——— Universitas Ciputra '24 Informatics | Fullstack Developer ———",
+    "scroll": "Scroll"
+  },
+  "projects": {
+    "sectionLabel": "003 / Project Showcase",
+    "heading": "Systems I've\nShipped.",
+    "subheading": "Production-grade architectures handling real traffic, real payments, and real edge cases.",
+    "subheadingDesktop": "Production-grade architectures handling real traffic, real payments, and real edge cases. Scroll horizontally.",
+    "scrollHint": "Drag / Scroll →",
+    "items": [
+      {
+        "label": "Case Study 01",
+        "title": "Ciputra Color Run 2026",
+        "description": "Ciputra University's flagship event portal. Queue-based registration handling 5,000+ concurrent users with Redis pub/sub and optimistic locking to prevent overselling."
+      },
+      {
+        "label": "Case Study 02",
+        "title": "Imperial F7 Kost Management System",
+        "description": "End-to-end web app for managing boarding house operations. Features include dynamic room allocation, tenant billing with invoice generation, and maintenance request tracking. Built with Laravel Blade templates and MySQL backend."
+      },
+      {
+        "label": "Case Study 03",
+        "title": "Nudge",
+        "description": "An android app that helps users to keep track of their calories, implementing EMA (Ecological Momentary Assessment) to send notifications at the right time. Built with Kotlin, PostgreSQL and REST API."
+      },
+      {
+        "label": "Case Study 04",
+        "title": "NAVI Digital Guestbook",
+        "description": "A digital guestbook system for events, allowing attendees to check in with QR Codes, Digital Angpao tracking as well as custom Email Builders. Built with Next.js, Prisma and PostgreSQL."
+      }
+    ]
+  },
+  "timeline": {
+    "sectionLabel": "004 / Experience & Leadership",
+    "heading": "Trajectory",
+    "items": [
+      {
+        "title": "Part-time Coding Mentor",
+        "org": "Timedoor Academy",
+        "detail": "Guided students through various courses in varied programming languages, resulting in 100% of the class with a working project"
+      },
+      {
+        "title": "IT Division Coordinator",
+        "org": "Universitas Ciputra International Committee (UCIC)",
+        "detail": "Developed and maintained the official WordPress website of CaGE, creating a centralized digital hub, improving the University's international presence."
+      },
+      {
+        "title": "PDD Website Coordinator",
+        "org": "Universitas Ciputra Fair & Color Run 2026",
+        "detail": "Developed a dynamic website for the Ciputra Color Run registration portal to handle both individual and group ticketing alongside race pack claims, ensuring seamless data processing for 1500 runners and reducing queue times during peak hours."
+      },
+      {
+        "title": "Intern Coding Mentor",
+        "org": "Timedoor Academy",
+        "detail": "Assisted in the preparation and delivery of the programming curricula and optimized classroom workflows, ensuring high student engagement while transitioning to a part-time coding mentor rule."
+      }
+    ]
+  },
+  "stack": {
+    "sectionLabel": "002 / The Stack",
+    "heading": "Languages &\nTools",
+    "subheading": "Every tool mastered is a weapon in my arsenal. I leverage best-in-class technologies to build performant, scalable, and maintainable applications. Below are the core components of my current tech stack.",
+    "items": [
+      {
+        "role": "Application Framework",
+        "detail": "App Router, RSC, ISR with on-demand revalidation. Edge middleware for geo-routing and A/B experimentation."
+      },
+      {
+        "role": "Application Framework",
+        "detail": "Eloquent ORM with model observers for domain events. Horizon for queue monitoring and Telescope for debugging."
+      },
+      {
+        "role": "Game Development & Scripting",
+        "detail": "Pygame for 2D game development, leveraging Python's simplicity for rapid prototyping. Also used for build scripts and automation."
+      },
+      {
+        "role": "Native iOS Engineering",
+        "detail": "Declarative UI with @Observable macro, structured concurrency via async/await, and Core Data + CloudKit sync."
+      },
+      {
+        "role": "Native Android Engineering",
+        "detail": "Modern Android development with Jetpack Compose for declarative UI, Kotlin Coroutines for async, and Room for local data persistence."
+      },
+      {
+        "role": "Relational Database",
+        "detail": "ACID-compliant storage with GIN indexes for JSONB queries. Connection pooling via PgBouncer at 200 concurrent."
+      },
+      {
+        "role": "Frontend Fundamentals",
+        "detail": "Semantic HTML5, modern CSS with Flexbox and Grid, and vanilla JavaScript for DOM manipulation and interactivity."
+      },
+      {
+        "role": "Version Control & Collaboration",
+        "detail": "Experience with Git workflows, branching strategies, and GitHub for code review and continuous integration."
+      }
+    ]
+  },
+  "footer": {
+    "sectionLabel": "005 / Contact",
+    "heading": "Initiate.",
+    "copyright": "© 2026 — Engineered with zero dependencies on luck."
+  },
+  "loading": {
+    "loading": "Loading"
+  }
+}

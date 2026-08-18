@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { I18nProvider, useTranslation } from "./i18n/I18nContext";
 import LoadingScreen  from "./components/LoadingScreen";
 import Hero from "./components/Hero";
 import TechStack from "./components/TechStack";
@@ -31,8 +32,9 @@ function smoothScrollTo(href: string) {
   });
 }
 
-export default function App() {
+function AppContent() {
   const [loaded, setLoaded] = useState(false);
+  const { t, locale } = useTranslation();
 
   const handleLoadComplete = useCallback(() => {
     setLoaded(true);
@@ -55,10 +57,28 @@ export default function App() {
     return () => cancelAnimationFrame(id);
   }, [loaded]);
 
+  // Refresh all ScrollTrigger instances when language changes
+  // so pin spacers and measurements stay in sync with new content
+  useEffect(() => {
+    if (!loaded) return;
+    // Wait two frames for React to commit + browser to reflow
+    let raf1: number;
+    let raf2: number;
+    raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        ScrollTrigger.refresh();
+      });
+    });
+    return () => {
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
+  }, [locale, loaded]);
+
   const menuItems: StaggeredMenuItem[] = [
     {
-      label: "Home",
-      ariaLabel: "Go to top",
+      label: t("nav.home"),
+      ariaLabel: t("nav.homeAria"),
       link: "#",
       onClick: (e) => {
         e.preventDefault();
@@ -66,8 +86,8 @@ export default function App() {
       },
     },
     {
-      label: "Work",
-      ariaLabel: "View projects",
+      label: t("nav.work"),
+      ariaLabel: t("nav.workAria"),
       link: "#work",
       onClick: (e) => {
         e.preventDefault();
@@ -75,8 +95,8 @@ export default function App() {
       },
     },
     {
-      label: "Experience",
-      ariaLabel: "View experience",
+      label: t("nav.experience"),
+      ariaLabel: t("nav.experienceAria"),
       link: "#experience",
       onClick: (e) => {
         e.preventDefault();
@@ -84,8 +104,8 @@ export default function App() {
       },
     },
     {
-      label: "Stack",
-      ariaLabel: "View tech stack",
+      label: t("nav.stack"),
+      ariaLabel: t("nav.stackAria"),
       link: "#stack",
       onClick: (e) => {
         e.preventDefault();
@@ -93,8 +113,8 @@ export default function App() {
       },
     },
     {
-      label: "Contact",
-      ariaLabel: "Get in touch",
+      label: t("nav.contact"),
+      ariaLabel: t("nav.contactAria"),
       link: "#contact",
       onClick: (e) => {
         e.preventDefault();
@@ -128,6 +148,9 @@ export default function App() {
         changeMenuColorOnOpen={true}
         colors={["#1a1a1a", "#111111"]}
         accentColor="#A70947"
+        socialsTitle={t("nav.socials")}
+        menuLabel={t("nav.menu")}
+        closeLabel={t("nav.close")}
       />
 
       <Hero />
@@ -144,5 +167,13 @@ export default function App() {
         <Footer />
       </div>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <I18nProvider>
+      <AppContent />
+    </I18nProvider>
   );
 }

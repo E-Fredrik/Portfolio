@@ -1,42 +1,39 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "../i18n/I18nContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const roles = [
-  {
-    period: "June 2024 — Present",
-    title: "Part-time Coding Mentor",
-    org: "Timedoor Academy",
-    detail:
-      "Guided students through various courses in varied programming languages, resulting in 100% of the class with a working project",
-  },
-  {
-    period: "May 2025 — May 2026",
-    title: "IT Division Coordinator",
-    org: "Universitas Ciputra International Committee (UCIC)",
-    detail:
-      "Developed and maintained the official WordPress website of CaGE, creating a centralized digital hub, improving the University’s international presence.",
-  },
-  {
-    period: "October 2025 — April 2026",
-    title: "PDD Website Coordinator",
-    org: "Universitas Ciputra Fair & Color Run 2026",
-    detail:
-      "Developed a dynamic website for the Ciputra Color Run registration portal to handle both individual and group ticketing alongside race pack claims, ensuring seamless data processing for 1500 runners and reducing queue times during peak hours.",
-  },
-  {
-    period: "May 2024 — May 2024",
-    title: "Intern Coding Mentor",
-    org: "Timedoor Academy",
-    detail:
-      "Assisted in the preparation and delivery of the programming curricula and optimized classroom workflows, ensuring high student engagement while transitioning to a part-time coding mentor rule.",
-  },
+/** Static data that doesn't need translation */
+const ROLE_PERIODS = [
+  "June 2024 — Present",
+  "May 2025 — May 2026",
+  "October 2025 — April 2026",
+  "May 2024 — May 2024",
 ];
+
+/** Translation shape for a single timeline item from the JSON dictionary */
+interface TimelineTranslation {
+  title: string;
+  org: string;
+  detail: string;
+}
 
 export default function Timeline() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { t, tArray } = useTranslation();
+
+  const translatedItems = tArray<TimelineTranslation>("timeline.items");
+  const roles = ROLE_PERIODS.map((period, i) => ({
+    period,
+    title: translatedItems[i]?.title ?? "",
+    org: translatedItems[i]?.org ?? "",
+    detail: translatedItems[i]?.detail ?? "",
+  }));
+
+  // Parse heading with \n support
+  const headingLines = t("timeline.heading").split("\n");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -75,7 +72,7 @@ export default function Timeline() {
               textTransform: "uppercase",
             }}
           >
-            004 / Experience & Leadership
+            {t("timeline.sectionLabel")}
           </p>
           <h2
             className="text-white mt-4"
@@ -86,7 +83,12 @@ export default function Timeline() {
               lineHeight: 1,
             }}
           >
-            Trajectory
+            {headingLines.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < headingLines.length - 1 && <br />}
+              </span>
+            ))}
           </h2>
         </div>
 

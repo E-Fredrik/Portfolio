@@ -1,11 +1,13 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "../i18n/I18nContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -48,7 +50,7 @@ export default function Footer() {
               textTransform: "uppercase",
             }}
           >
-            005 / Contact
+            {t("footer.sectionLabel")}
           </p>
 
           <h2
@@ -60,7 +62,7 @@ export default function Footer() {
               lineHeight: 1,
             }}
           >
-            Initiate.
+            {t("footer.heading")}
           </h2>
 
           <a
@@ -116,7 +118,7 @@ export default function Footer() {
               fontFamily: "monospace",
             }}
           >
-            &copy; 2026 — Engineered with zero dependencies on luck.
+            {t("footer.copyright")}
           </p>
           <p
             className="text-[#1a1a1a]"

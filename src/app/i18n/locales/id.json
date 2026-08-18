@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "homeAria": "Kembali ke atas",
+    "work": "Karya",
+    "workAria": "Lihat proyek",
+    "experience": "Pengalaman",
+    "experienceAria": "Lihat pengalaman",
+    "stack": "Teknologi",
+    "stackAria": "Lihat tech stack",
+    "contact": "Kontak",
+    "contactAria": "Hubungi saya",
+    "menu": "Menu",
+    "close": "Tutup",
+    "socials": "Media Sosial"
+  },
+  "hero": {
+    "subtitle": "Full Stack Developer | Mentor Pemrograman Paruh Waktu ——— Portofolio / 2026",
+    "tagline": "——— Universitas Ciputra '24 Informatika | Fullstack Developer ———",
+    "scroll": "Gulir"
+  },
+  "projects": {
+    "sectionLabel": "003 / Proyek Unggulan",
+    "heading": "Sistem yang\nTelah Dikirim.",
+    "subheading": "Arsitektur skala produksi yang menangani traffic nyata, pembayaran nyata, dan edge case nyata.",
+    "subheadingDesktop": "Arsitektur skala produksi yang menangani traffic nyata, pembayaran nyata, dan edge case nyata. Gulir secara horizontal.",
+    "scrollHint": "Geser / Gulir →",
+    "items": [
+      {
+        "label": "Studi Kasus 01",
+        "title": "Ciputra Color Run 2026",
+        "description": "Portal acara unggulan Universitas Ciputra. Pendaftaran berbasis antrian yang menangani 5.000+ pengguna bersamaan dengan Redis pub/sub dan optimistic locking untuk mencegah overselling."
+      },
+      {
+        "label": "Studi Kasus 02",
+        "title": "Sistem Manajemen Kost Imperial F7",
+        "description": "Aplikasi web end-to-end untuk mengelola operasional rumah kost. Fitur mencakup alokasi kamar dinamis, penagihan penyewa dengan pembuatan invoice, dan pelacakan permintaan pemeliharaan. Dibangun dengan Laravel Blade templates dan backend MySQL."
+      },
+      {
+        "label": "Studi Kasus 03",
+        "title": "Nudge",
+        "description": "Aplikasi Android yang membantu pengguna melacak kalori mereka, mengimplementasikan EMA (Ecological Momentary Assessment) untuk mengirim notifikasi pada waktu yang tepat. Dibangun dengan Kotlin, PostgreSQL dan REST API."
+      },
+      {
+        "label": "Studi Kasus 04",
+        "title": "NAVI Digital Guestbook",
+        "description": "Sistem buku tamu digital untuk acara, memungkinkan tamu check-in dengan QR Code, pelacakan Angpao Digital serta Email Builder kustom. Dibangun dengan Next.js, Prisma dan PostgreSQL."
+      }
+    ]
+  },
+  "timeline": {
+    "sectionLabel": "004 / Pengalaman & Kepemimpinan",
+    "heading": "Lintasan",
+    "items": [
+      {
+        "title": "Mentor Pemrograman Paruh Waktu",
+        "org": "Timedoor Academy",
+        "detail": "Membimbing siswa melalui berbagai kursus dalam beragam bahasa pemrograman, menghasilkan 100% kelas dengan proyek yang berfungsi"
+      },
+      {
+        "title": "Koordinator Divisi IT",
+        "org": "Universitas Ciputra International Committee (UCIC)",
+        "detail": "Mengembangkan dan memelihara situs WordPress resmi CaGE, menciptakan hub digital terpusat, meningkatkan kehadiran internasional Universitas."
+      },
+      {
+        "title": "Koordinator Website PDD",
+        "org": "Universitas Ciputra Fair & Color Run 2026",
+        "detail": "Mengembangkan website dinamis untuk portal pendaftaran Ciputra Color Run yang menangani tiket individu dan grup serta klaim race pack, memastikan pemrosesan data yang lancar untuk 1500 pelari dan mengurangi waktu antrian pada jam sibuk."
+      },
+      {
+        "title": "Mentor Pemrograman Magang",
+        "org": "Timedoor Academy",
+        "detail": "Membantu persiapan dan penyampaian kurikulum pemrograman serta mengoptimalkan alur kerja kelas, memastikan keterlibatan siswa yang tinggi sambil bertransisi ke peran mentor pemrograman paruh waktu."
+      }
+    ]
+  },
+  "stack": {
+    "sectionLabel": "002 / Tech Stack",
+    "heading": "Bahasa &\nAlat",
+    "subheading": "Setiap alat yang dikuasai adalah senjata di gudang persenjataan saya. Saya memanfaatkan teknologi terbaik di kelasnya untuk membangun aplikasi yang performan, skalabel, dan mudah dipelihara. Berikut adalah komponen inti dari tech stack saya saat ini.",
+    "items": [
+      {
+        "role": "Application Framework",
+        "detail": "App Router, RSC, ISR dengan revalidasi on-demand. Edge middleware untuk geo-routing dan eksperimen A/B."
+      },
+      {
+        "role": "Application Framework",
+        "detail": "Eloquent ORM dengan model observer untuk domain event. Horizon untuk pemantauan antrian dan Telescope untuk debugging."
+      },
+      {
+        "role": "Pengembangan Game & Scripting",
+        "detail": "Pygame untuk pengembangan game 2D, memanfaatkan kesederhanaan Python untuk prototyping cepat. Juga digunakan untuk build script dan automasi."
+      },
+      {
+        "role": "Native iOS Engineering",
+        "detail": "UI deklaratif dengan macro @Observable, structured concurrency via async/await, dan sinkronisasi Core Data + CloudKit."
+      },
+      {
+        "role": "Native Android Engineering",
+        "detail": "Pengembangan Android modern dengan Jetpack Compose untuk UI deklaratif, Kotlin Coroutines untuk async, dan Room untuk persistensi data lokal."
+      },
+      {
+        "role": "Database Relasional",
+        "detail": "Penyimpanan ACID-compliant dengan GIN index untuk query JSONB. Connection pooling via PgBouncer pada 200 koneksi bersamaan."
+      },
+      {
+        "role": "Fondasi Frontend",
+        "detail": "HTML5 semantik, CSS modern dengan Flexbox dan Grid, serta JavaScript vanilla untuk manipulasi DOM dan interaktivitas."
+      },
+      {
+        "role": "Version Control & Kolaborasi",
+        "detail": "Pengalaman dengan alur kerja Git, strategi branching, dan GitHub untuk code review dan continuous integration."
+      }
+    ]
+  },
+  "footer": {
+    "sectionLabel": "005 / Kontak",
+    "heading": "Mulai.",
+    "copyright": "© 2026 — Direkayasa tanpa ketergantungan pada keberuntungan."
+  },
+  "loading": {
+    "loading": "Memuat"
+  }
+}

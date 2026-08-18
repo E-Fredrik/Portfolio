@@ -3,6 +3,7 @@
 import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import './StaggeredMenu.css';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export type StaggeredMenuItem = {
   label: string;
@@ -34,6 +35,9 @@ interface StaggeredMenuProps {
   closeOnClickAway?: boolean;
   onMenuOpen?: () => void;
   onMenuClose?: () => void;
+  socialsTitle?: string;
+  menuLabel?: string;
+  closeLabel?: string;
 }
 
 export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
@@ -53,7 +57,10 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   isFixed = false,
   closeOnClickAway = true,
   onMenuOpen,
-  onMenuClose
+  onMenuClose,
+  socialsTitle: socialsTitleProp = 'Socials',
+  menuLabel = 'Menu',
+  closeLabel = 'Close',
 }) => {
   const [open, setOpen] = useState(false);
   const openRef = useRef(false);
@@ -65,7 +72,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   const iconRef = useRef<HTMLSpanElement>(null);
   const textInnerRef = useRef<HTMLSpanElement>(null);
   const textWrapRef = useRef<HTMLSpanElement>(null);
-  const [textLines, setTextLines] = useState(['Menu', 'Close']);
+  const [textLines, setTextLines] = useState([menuLabel, closeLabel]);
 
   const openTlRef = useRef<gsap.core.Timeline | null>(null);
   const closeTweenRef = useRef<gsap.core.Tween | null>(null);
@@ -314,13 +321,13 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     if (!inner) return;
     textCycleAnimRef.current?.kill();
 
-    const currentLabel = opening ? 'Menu' : 'Close';
-    const targetLabel = opening ? 'Close' : 'Menu';
+    const currentLabel = opening ? menuLabel : closeLabel;
+    const targetLabel = opening ? closeLabel : menuLabel;
     const cycles = 3;
     const seq = [currentLabel];
     let last = currentLabel;
     for (let i = 0; i < cycles; i++) {
-      last = last === 'Menu' ? 'Close' : 'Menu';
+      last = last === menuLabel ? closeLabel : menuLabel;
       seq.push(last);
     }
     if (last !== targetLabel) seq.push(targetLabel);
@@ -335,7 +342,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       duration: 0.5 + lineCount * 0.07,
       ease: 'power4.out'
     });
-  }, []);
+  }, [menuLabel, closeLabel]);
 
   const toggleMenu = useCallback(() => {
     const target = !openRef.current;
@@ -424,6 +431,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             </span>
           )}
         </div>
+        <LanguageSwitcher />
         <button
           ref={toggleBtnRef}
           className="sm-toggle"
@@ -486,7 +494,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           </ul>
           {displaySocials && socialItems && socialItems.length > 0 && (
             <div className="sm-socials" aria-label="Social links">
-              <h3 className="sm-socials-title">Socials</h3>
+              <h3 className="sm-socials-title">{socialsTitleProp}</h3>
               <ul className="sm-socials-list" role="list">
                 {socialItems.map((s, i) => (
                   <li key={s.label + i} className="sm-socials-item">

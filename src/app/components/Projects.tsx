@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { useTranslation } from "../i18n/I18nContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,6 +32,13 @@ interface Project {
   /** Images stacked vertically on the left side */
   images: ProjectImage[];
   browserUrl: string; // Optional URL to display in the browser frame
+}
+
+/** Translation shape for a single project item from the JSON dictionary */
+interface ProjectTranslation {
+  label: string;
+  title: string;
+  description: string;
 }
 
 function BrowserFrame({
@@ -66,18 +74,11 @@ function BrowserFrame({
 }
 
 /* ------------------------------------------------------------------ */
-/*  ✏️  EDIT YOUR PROJECTS HERE                                        */
-/*  - Add, remove, or reorder entries in this array                   */
-/*  - Each project follows the same template automatically            */
-/*  - Images are stacked vertically on the left; adjust width/height  */
-/*    per image to control sizing                                     */
+/*  ✏️  STATIC PROJECT DATA (language-independent fields)              */
+/*  - tags, images, and browserUrl don't need translation              */
 /* ------------------------------------------------------------------ */
-const PROJECTS: Project[] = [
+const PROJECT_STATIC = [
   {
-    label: "Case Study 01",
-    title: "Ciputra Color Run 2026",
-    description:
-      "Ciputra University's flagship event portal. Queue-based registration handling 5,000+ concurrent users with Redis pub/sub and optimistic locking to prevent overselling.",
     tags: ["Next.js", "Prisma", "PostgreSQL"],
     images: [
       {
@@ -87,13 +88,9 @@ const PROJECTS: Project[] = [
         height: 340,
       },
     ],
-    browserUrl: "ciputrarun.com"
+    browserUrl: "ciputrarun.com",
   },
   {
-    label: "Case Study 02",
-    title: "Imperial F7 Kost Management System",
-    description:
-      "End-to-end web app for managing boarding house operations. Features include dynamic room allocation, tenant billing with invoice generation, and maintenance request tracking. Built with Laravel Blade templates and MySQL backend.",
     tags: ["Laravel Blade", "MySQL", "PHP", "Bootstrap JS & CSS"],
     images: [
       {
@@ -108,14 +105,10 @@ const PROJECTS: Project[] = [
         width: 520,
         height: 340,
       },
-
     ],
-    browserUrl: "imperialf7.com"
+    browserUrl: "imperialf7.com",
   },
   {
-    label: "Case Study 03",
-    title: "Nudge",
-    description: "An android app that helps users to keep track of their calories, implementing EMA (Ecological Momentary Assessment) to send notifications at the right time. Built with Kotlin, PostgreSQL and REST API.",
     tags: ["Kotlin", "PostgreSQL", "REST API"],
     images: [
       {
@@ -125,13 +118,9 @@ const PROJECTS: Project[] = [
         height: 550,
       },
     ],
-    browserUrl: "nudgeapp.com"
+    browserUrl: "nudgeapp.com",
   },
   {
-    label: "Case Study 04",
-    title: "NAVI Digital Guestbook",
-    description:
-      "A digital guestbook system for events, allowing attendees to check in with QR Codes, Digital Angpao tracking as well as custom Email Builders. Built with Next.js, Prisma and PostgreSQL.",
     tags: ["Next.js", "Prisma", "PostgreSQL"],
     images: [
       {
@@ -141,8 +130,8 @@ const PROJECTS: Project[] = [
         height: 340,
       },
     ],
-    browserUrl: "naviguestbook.com"
-  }
+    browserUrl: "naviguestbook.com",
+  },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -252,6 +241,16 @@ export default function Projects() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const { t, tArray, locale } = useTranslation();
+
+  // Merge translated text with static project data
+  const translatedItems = tArray<ProjectTranslation>("projects.items");
+  const PROJECTS: Project[] = PROJECT_STATIC.map((staticData, i) => ({
+    ...staticData,
+    label: translatedItems[i]?.label ?? `Case Study ${String(i + 1).padStart(2, "0")}`,
+    title: translatedItems[i]?.title ?? "",
+    description: translatedItems[i]?.description ?? "",
+  }));
 
   // 1 intro + N projects
   const totalPanels = 1 + PROJECTS.length;
@@ -263,6 +262,8 @@ export default function Projects() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
+  // Rebuild the horizontal-scroll pin when locale changes so GSAP's
+  // reparented DOM stays in sync with React's virtual DOM.
   useEffect(() => {
     if (isMobile) return; // Skip horizontal scroll on mobile
 
@@ -287,7 +288,10 @@ export default function Projects() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [isMobile, totalPanels]);
+  }, [isMobile, totalPanels, locale]);
+
+  // Parse heading with \n support
+  const headingLines = t("projects.heading").split("\n");
 
   /* ---------------------------------------------------------------- */
   /*  Mobile: vertical stacked layout                                  */
@@ -309,7 +313,7 @@ export default function Projects() {
               textTransform: "uppercase",
             }}
           >
-            003 / Project Showcase
+            {t("projects.sectionLabel")}
           </p>
           <h2
             className="text-white mt-4"
@@ -320,16 +324,18 @@ export default function Projects() {
               lineHeight: 1,
             }}
           >
-            Systems I&apos;ve
-            <br />
-            Shipped.
+            {headingLines.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < headingLines.length - 1 && <br />}
+              </span>
+            ))}
           </h2>
           <p
             className="text-[#A1A1A6] mt-6"
             style={{ fontSize: "13px", lineHeight: 1.7 }}
           >
-            Production-grade architectures handling real traffic, real payments,
-            and real edge cases.
+            {t("projects.subheading")}
           </p>
         </div>
 
@@ -372,7 +378,7 @@ export default function Projects() {
                 textTransform: "uppercase",
               }}
             >
-              003 / Project Showcase
+              {t("projects.sectionLabel")}
             </p>
             <h2
               className="text-white mt-4"
@@ -383,16 +389,18 @@ export default function Projects() {
                 lineHeight: 1,
               }}
             >
-              Systems I&apos;ve
-              <br />
-              Shipped.
+              {headingLines.map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i < headingLines.length - 1 && <br />}
+                </span>
+              ))}
             </h2>
             <p
               className="text-[#A1A1A6] mt-6"
               style={{ fontSize: "13px", lineHeight: 1.7 }}
             >
-              Production-grade architectures handling real traffic, real
-              payments, and real edge cases. Scroll horizontally.
+              {t("projects.subheadingDesktop")}
             </p>
             <div className="mt-8 flex items-center gap-3">
               <div className="w-12 h-px" style={{ background: "#333333" }} />
@@ -404,7 +412,7 @@ export default function Projects() {
                   textTransform: "uppercase",
                 }}
               >
-                Drag / Scroll →
+                {t("projects.scrollHint")}
               </span>
             </div>
           </div>

@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+import { useTranslation } from "../i18n/I18nContext";
 
 interface LoadingScreenProps {
   onComplete: () => void;
 }
 
 export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const letterERef = useRef<HTMLSpanElement>(null);
   const letterFRef = useRef<HTMLSpanElement>(null);
@@ -152,7 +154,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
               textTransform: "uppercase",
             }}
           >
-            Loading
+            {t("loading.loading")}
           </span>
           <span
             ref={percentRef}

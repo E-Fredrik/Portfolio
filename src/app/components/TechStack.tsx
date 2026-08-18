@@ -1,82 +1,45 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslation } from "../i18n/I18nContext";
+
 gsap.registerPlugin(ScrollTrigger);
 
-const stack = [
-  {
-    name: "NextJS",
-    role: "Application Framework",
-    detail: "App Router, RSC, ISR with on-demand revalidation. Edge middleware for geo-routing and A/B experimentation.",
-    snippet: "generateStaticParams()",
-    size: "medium",
-  },
-  {
-    name: "Laravel",
-    role: "Application Framework",
-    detail: "Eloquent ORM with model observers for domain events. Horizon for queue monitoring and Telescope for debugging.",
-    snippet: "php artisan make:model",
-    size: "medium",
-  },
-  {
-    name: "Python",
-    role: "Game Development & Scripting",
-    detail: "Pygame for 2D game development, leveraging Python's simplicity for rapid prototyping. Also used for build scripts and automation.",
-    snippet: "import pygame",
-    size: "medium",
-  },
-  {
-    name: "Swift / SwiftUI",
-    role: "Native iOS Engineering",
-    detail: "Declarative UI with @Observable macro, structured concurrency via async/await, and Core Data + CloudKit sync.",
-    snippet: "@Observable final class",
-    size: "small",
-  },
-  {
-    name: "Kotlin / Jetpack Compose",
-    role: "Native Android Engineering",
-    detail: "Modern Android development with Jetpack Compose for declarative UI, Kotlin Coroutines for async, and Room for local data persistence.",
-    snippet: "@Composable fun",
-    size: "small",
-  },
-  {
-    name: "PostgreSQL/MySQL",
-    role: "Relational Database",
-    detail: "ACID-compliant storage with GIN indexes for JSONB queries. Connection pooling via PgBouncer at 200 concurrent.",
-    snippet: "CREATE INDEX CONCURRENTLY",
-    size: "medium",
-  },
-  {
-    name: "HTML/CSS/JS",
-    role: "Frontend Fundamentals",
-    detail: "Semantic HTML5, modern CSS with Flexbox and Grid, and vanilla JavaScript for DOM manipulation and interactivity.",
-    snippet: "document.querySelector()",
-    size: "small",
-  },
-  {
-    name: "Git/GitHub",
-    role: "Version Control & Collaboration",
-    detail: "Experience with Git workflows, branching strategies, and GitHub for code review and continuous integration.",
-    snippet: "git push origin main",
-    size: "small",
-  }
+/** Static data that doesn't need translation (tech names, code snippets, sizing) */
+const STACK_STATIC = [
+  { name: "NextJS", snippet: "generateStaticParams()", size: "medium" },
+  { name: "Laravel", snippet: "php artisan make:model", size: "medium" },
+  { name: "Python", snippet: "import pygame", size: "medium" },
+  { name: "Swift / SwiftUI", snippet: "@Observable final class", size: "small" },
+  { name: "Kotlin / Jetpack Compose", snippet: "@Composable fun", size: "small" },
+  { name: "PostgreSQL/MySQL", snippet: "CREATE INDEX CONCURRENTLY", size: "medium" },
+  { name: "HTML/CSS/JS", snippet: "document.querySelector()", size: "small" },
+  { name: "Git/GitHub", snippet: "git push origin main", size: "small" },
 ];
+
+/** Translation shape for a single stack item from the JSON dictionary */
+interface StackTranslation {
+  role: string;
+  detail: string;
+}
 
 export default function TechStack() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const { t, tArray } = useTranslation();
+
+  const translatedItems = tArray<StackTranslation>("stack.items");
+  const stack = STACK_STATIC.map((staticData, i) => ({
+    ...staticData,
+    role: translatedItems[i]?.role ?? "",
+    detail: translatedItems[i]?.detail ?? "",
+  }));
+
+  // Parse heading with \n support
+  const headingLines = t("stack.heading").split("\n");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Pin section
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top top",
-        end: "+=60%",
-        pin: true,
-        pinSpacing: true,
-      });
-
-      // Staggered reveal — cards start at different opacities
+      // Staggered reveal — cards fade/slide in as you scroll into the section
       gsap.from(".stack-card", {
         opacity: 0,
         y: 60,
@@ -112,7 +75,7 @@ export default function TechStack() {
               textTransform: "uppercase",
             }}
           >
-            002 / The Stack
+            {t("stack.sectionLabel")}
           </p>
           <h2
             className="text-white mt-4"
@@ -123,13 +86,18 @@ export default function TechStack() {
               lineHeight: 1,
             }}
           >
-            Languages &<br /> Tools
+            {headingLines.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < headingLines.length - 1 && <br />}
+              </span>
+            ))}
           </h2>
           <p
             className="text-[#A1A1A6] mt-6"
             style={{ fontSize: "13px", lineHeight: 1.7 }}
           >
-            Every tool mastered is a weapon in my arsenal. I leverage best-in-class technologies to build performant, scalable, and maintainable applications. Below are the core components of my current tech stack.
+            {t("stack.subheading")}
           </p>
         </div>
 
@@ -170,15 +138,6 @@ export default function TechStack() {
                   >
                     {item.role}
                   </span>
-                  {/* <code
-                    style={{
-                      fontSize: "9px",
-                      fontFamily: "monospace",
-                      color: "#333333",
-                    }}
-                  >
-                    {item.snippet}
-                  </code> */}
                 </div>
 
                 {/* Bottom content */}

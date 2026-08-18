@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
+import { useTranslation } from "../i18n/I18nContext";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -15,6 +16,7 @@ type WaveParticle = {
 };
 
 export default function Hero() {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const hudRef = useRef<HTMLDivElement>(null);
@@ -398,7 +400,7 @@ export default function Hero() {
             textTransform: "uppercase",
           }}
         >
-          Scroll
+          {t("hero.scroll")}
         </span>
         <div className="w-px h-12" style={{ background: "#333333" }} />
       </div>
@@ -418,7 +420,7 @@ export default function Hero() {
                 marginBottom: "32px",
               }}
             >
-              Full Stack Developer | Part-Time Coding Mentor ——— Portfolio / 2026
+              {t("hero.subtitle")}
             </p>
           </div>
           <div className="overflow-hidden">
@@ -462,7 +464,7 @@ export default function Hero() {
                 fontFamily: "Inter, sans-serif",
               }}
             >
-              ——— Universitas Ciputra '24 Informatics | Fullstack Developer ——— 
+              {t("hero.tagline")}
             </h2>
           </div>
         </div>
