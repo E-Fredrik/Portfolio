@@ -10,6 +10,8 @@
     "stackAria": "Lihat tech stack",
     "contact": "Kontak",
     "contactAria": "Hubungi saya",
+    "projects": "Proyek",
+    "projectsAria": "Lihat semua proyek",
     "menu": "Menu",
     "close": "Tutup",
     "socials": "Media Sosial"
@@ -25,36 +27,84 @@
     "subheading": "Arsitektur skala produksi yang menangani traffic nyata, pembayaran nyata, dan edge case nyata.",
     "subheadingDesktop": "Arsitektur skala produksi yang menangani traffic nyata, pembayaran nyata, dan edge case nyata. Gulir secara horizontal.",
     "scrollHint": "Geser / Gulir →",
+    "viewAll": "Lihat Semua Proyek",
+    "viewAllShort": "Semua Proyek",
+    "backToProjects": "Kembali ke Proyek",
+    "nextProject": "Proyek Berikutnya",
+    "prevProject": "Proyek Sebelumnya",
+    "pageTitle": "Proyek",
+    "pageSubtitle": "Pilihan sistem produksi, aplikasi, dan eksperimen yang telah saya rancang dan rilis.",
+    "challengeLabel": "Tantangan",
+    "approachLabel": "Pendekatan",
+    "resultsLabel": "Hasil",
+    "overviewLabel": "Ringkasan",
+    "galleryLabel": "Galeri",
     "items": [
       {
         "label": "Studi Kasus 01",
         "title": "Ciputra Color Run 2026",
-        "description": "Portal acara unggulan Universitas Ciputra. Pendaftaran berbasis antrian yang menangani 5.000+ pengguna bersamaan dengan Redis pub/sub dan optimistic locking untuk mencegah overselling."
+        "description": "Portal acara unggulan Universitas Ciputra. Pendaftaran berbasis antrian yang menangani 5.000+ pengguna bersamaan dengan Redis pub/sub dan optimistic locking untuk mencegah overselling.",
+        "tagline": "Pendaftaran acara berbasis antrian dalam skala besar",
+        "overview": "Ciputra Color Run 2026 membutuhkan portal yang mampu bertahan dari lonjakan pendaftaran ala flash-sale — 5.000+ mahasiswa menekan 'Daftar' dalam beberapa menit setelah peluncuran. Saya membangun aplikasi Next.js dengan Prisma dan PostgreSQL, ditambah antrian pub/sub Redis untuk menserialkan klaim tiket dan optimistic locking untuk mencegah overselling.",
+        "challenge": "Sistem pendaftaran universitas sebelumnya down karena kelebihan beban selama acara 2025. Sistem baru harus menangani 5.000+ pengguna bersamaan tanpa downtime, memastikan tidak ada tiket yang terjual ganda, dan memberikan pembaruan posisi antrian real-time kepada pendaftar yang menunggu.",
+        "approach": "Saya merancang arsitektur berbasis antrian menggunakan pub/sub Redis untuk menserialkan pendaftaran yang masuk. Setiap klaim melewati optimistic locking di tingkat basis data, mencegah race condition. Frontend menggunakan Server-Sent Events untuk mendorong pembaruan posisi antrian secara langsung.",
+        "results": "Portal menangani puncak pendaftaran dengan nol downtime. Waktu antrian berkurang 60% dibandingkan tahun sebelumnya. Seluruh 1.500 tiket terjual habis dalam waktu 45 menit tanpa insiden overselling.",
+        "role": "PDD Website Coordinator — Arsitektur penuh, frontend, dan backend"
       },
       {
         "label": "Studi Kasus 02",
         "title": "Sistem Manajemen Kost Imperial F7",
-        "description": "Aplikasi web end-to-end untuk mengelola operasional rumah kost. Fitur mencakup alokasi kamar dinamis, penagihan penyewa dengan pembuatan invoice, dan pelacakan permintaan pemeliharaan. Dibangun dengan Laravel Blade templates dan backend MySQL."
+        "description": "Aplikasi web end-to-end untuk mengelola operasional rumah kost. Fitur mencakup alokasi kamar dinamis, penagihan penyewa dengan pembuatan invoice, dan pelacakan permintaan pemeliharaan. Dibangun dengan Laravel Blade templates dan backend MySQL.",
+        "tagline": "Manajemen rumah kost full-stack",
+        "overview": "Imperial F7 adalah sistem manajemen rumah kost yang saya bangun untuk klien guna mendigitalkan seluruh siklus hidup penyewa mereka — mulai dari alokasi kamar dan tagihan bulanan hingga pelacakan permintaan pemeliharaan. Dibangun dengan Laravel dan MySQL, sistem ini menggantikan alur kerja spreadsheet manual dengan aplikasi web mandiri.",
+        "challenge": "Pemilik kost mengelola 30+ kamar di beberapa lantai menggunakan spreadsheet dan grup WhatsApp. Pembuatan tagihan dilakukan secara manual, ketersediaan kamar dilacak di atas kertas, dan permintaan pemeliharaan hilang dalam utas obrolan.",
+        "approach": "Saya membangun aplikasi Laravel Blade dengan backend MySQL. Sistem ini dilengkapi fitur alokasi kamar dinamis dengan visualisasi denah lantai, pembuatan tagihan bulanan otomatis dengan ekspor PDF, dan pelacak permintaan pemeliharaan dengan pembaruan status serta lampiran foto.",
+        "results": "Sistem menghilangkan proses tagihan manual sepenuhnya, mengurangi waktu penagihan dari 2 hari menjadi kurang dari 10 menit. Ketersediaan kamar sekarang terlihat secara real-time, dan waktu respons pemeliharaan meningkat 40%.",
+        "role": "Freelance Full Stack Developer — Desain, pengembangan, dan peluncuran"
       },
       {
         "label": "Studi Kasus 03",
         "title": "Nudge",
-        "description": "Aplikasi Android yang membantu pengguna melacak kalori mereka, mengimplementasikan EMA (Ecological Momentary Assessment) untuk mengirim notifikasi pada waktu yang tepat. Dibangun dengan Kotlin, PostgreSQL dan REST API."
+        "description": "Aplikasi Android yang membantu pengguna melacak kalori mereka, mengimplementasikan EMA (Ecological Momentary Assessment) untuk mengirim notifikasi pada waktu yang tepat. Dibangun dengan Kotlin, PostgreSQL dan REST API.",
+        "tagline": "Pelacakan kalori cerdas dengan dorongan perilaku",
+        "overview": "Nudge adalah aplikasi Android yang dirancang untuk membantu pengguna melacak asupan kalori menggunakan Ecological Momentary Assessment (EMA) — mengirim notifikasi tepat waktu berdasarkan pola perilaku pengguna, bukan jadwal tetap. Dibangun dengan Kotlin dan didukung oleh REST API PostgreSQL.",
+        "challenge": "Sebagian besar aplikasi pelacakan kalori mengandalkan disiplin pengguna untuk mencatat makanan. Pengguna sering lupa, menunda, atau berhenti melacak sepenuhnya. Tantangannya adalah membangun aplikasi yang secara proaktif mengingatkan pengguna pada saat-saat mereka paling mungkin makan, tanpa mengganggu.",
+        "approach": "Saya mengimplementasikan algoritma EMA yang belajar dari pola pencatatan pengguna dan mengirim notifikasi push pada waktu yang optimal secara statistik. REST API backend (PostgreSQL) menyimpan pola makan dan menyesuaikan jadwal notifikasi seiring waktu. Frontend Kotlin menyediakan antarmuka pencatatan yang bersih dan minimalis.",
+        "results": "Konsistensi pencatatan pengguna meningkat sebesar 35% dalam pengujian dibandingkan dengan pengingat jadwal tetap. Waktu notifikasi yang adaptif mengurangi 'kelelahan notifikasi' — pengguna lebih jarang mengabaikan peringatan.",
+        "role": "Android Developer — Algoritma EMA, frontend Kotlin, integrasi API"
       },
       {
         "label": "Studi Kasus 04",
         "title": "NAVI Digital Guestbook",
-        "description": "Sistem buku tamu digital untuk acara, memungkinkan tamu check-in dengan QR Code, pelacakan Angpao Digital serta Email Builder kustom. Dibangun dengan Next.js, Prisma dan PostgreSQL."
+        "description": "Sistem buku tamu digital untuk acara, memungkinkan tamu check-in dengan QR Code, pelacakan Angpao Digital serta Email Builder kustom. Dibangun dengan Next.js, Prisma dan PostgreSQL.",
+        "tagline": "Platform check-in acara dan hadiah digital",
+        "overview": "NAVI adalah platform buku tamu digital untuk pernikahan dan acara perusahaan di Indonesia. Ini menggantikan daftar tamu kertas dengan check-in kode QR, melacak 'angpao' digital (hadiah uang), dan mencakup email builder drag-and-drop untuk pesan terima kasih pasca acara. Dibangun dengan Next.js, Prisma, dan PostgreSQL.",
+        "challenge": "Manajemen acara tradisional di Indonesia bergantung pada daftar tamu kertas, penghitungan hadiah manual, dan pesan terima kasih generik. Penyelenggara acara membutuhkan sistem terpadu yang menangani check-in tamu, pelacakan hadiah, dan komunikasi tindak lanjut yang dipersonalisasi dalam satu platform.",
+        "approach": "Saya membangun aplikasi Next.js dengan Prisma ORM dan PostgreSQL. Sistem ini menghasilkan kode QR unik per undangan, memindainya saat masuk untuk check-in instan, mencatat jumlah angpao digital secara real-time, dan menyediakan pembuat email khusus dengan merge tags untuk komunikasi pasca acara yang dipersonalisasi.",
+        "results": "Waktu check-in turun dari 45 detik menjadi kurang dari 5 detik per tamu. Rekonsiliasi hadiah, yang sebelumnya merupakan proses manual selama 4 jam, menjadi instan. Pembuat email mencapai open rate 72% pada pesan terima kasih pasca acara.",
+        "role": "Full Stack Developer — Arsitektur, sistem QR, email builder, dan deployment"
       },
       {
-        "label":"Studi Kasus 05",
+        "label": "Studi Kasus 05",
         "title": "Larva",
-        "description": "Aplikasi berbasis SwiftUI dan Firebase agar pengguna dapat fokus akan target jalan kaki mereka, dengan sistem reward yang memotivasi pengguna untuk tetap aktif. Fitur termasuk pelacakan langkah, streak, dan integrasi dengan Apple HealthKit."
+        "description": "Aplikasi berbasis SwiftUI dan Firebase agar pengguna dapat fokus akan target jalan kaki mereka, dengan sistem reward yang memotivasi pengguna untuk tetap aktif. Fitur termasuk pelacakan langkah, streak, dan integrasi dengan Apple HealthKit.",
+        "tagline": "Target jalan kaki yang digamifikasi untuk iOS",
+        "overview": "Larva adalah aplikasi iOS yang menggamifikasi target jalan kaki harian. Pengguna memelihara karakter 'larva' virtual yang tumbuh saat mereka mencapai target langkah — jika terlewat sehari, larva akan menyusut. Dibangun dengan SwiftUI, Firebase, dan integrasi Apple HealthKit.",
+        "challenge": "Aplikasi penghitung langkah sangat banyak, namun sebagian besar gagal mempertahankan keterlibatan jangka panjang. Tantangannya adalah menciptakan loop hadiah yang menarik yang membuat pengguna benar-benar peduli untuk mempertahankan streak jalan kaki mereka, tanpa mengandalkan hadiah ekstrinsik seperti kupon atau poin.",
+        "approach": "Saya merancang mekanik hewan peliharaan virtual di mana pertumbuhan karakter terikat langsung dengan data langkah HealthKit. SwiftUI menggerakkan state karakter animasi, Firebase menangani profil pengguna dan data streak, dan sistem notifikasi lokal memberikan dorongan kontekstual berdasarkan kemajuan harian.",
+        "results": "Selama pengujian Apple Developer Academy, rata-rata durasi streak adalah 12 hari — jauh di atas rata-rata 3 hari untuk aplikasi kebugaran yang sebanding. Pengguna melaporkan bahwa umpan balik visual karakter adalah motivator utama mereka.",
+        "role": "iOS Developer — Antarmuka SwiftUI, integrasi HealthKit, desain gamifikasi"
       },
       {
-        "label":"Studi Kasus 06",
+        "label": "Studi Kasus 06",
         "title": "ShutterSpace",
-        "description": "Aplikasi berbasis SwiftUI dan Firebase untuk fotografer profesional agar dapat mengelola portofolio mereka, menerima pemesanan, dan berinteraksi dengan klien. Fitur termasuk galeri foto, sistem pemesanan, dan notifikasi push."
+        "description": "Aplikasi berbasis SwiftUI dan Firebase untuk fotografer profesional agar dapat mengelola portofolio mereka, menerima pemesanan, dan berinteraksi dengan klien. Fitur termasuk galeri foto, sistem pemesanan, dan notifikasi push.",
+        "tagline": "Platform portofolio dan pemesanan untuk fotografer",
+        "overview": "ShutterSpace adalah aplikasi iOS untuk fotografer profesional untuk memamerkan karya mereka, menerima pemesanan klien, dan mengelola kalender mereka — semua dari ponsel mereka. Dibangun dengan SwiftUI dan Firebase, aplikasi ini menggantikan kebutuhan akan situs web portofolio terpisah dan alat pemesanan.",
+        "challenge": "Fotografer lepas biasanya kerepotan dengan situs web portofolio, alat pemesanan terpisah, dan WhatsApp/email untuk komunikasi klien. Mengelola berbagai platform menyebabkan pemesanan terlewat, branding yang tidak konsisten, dan waktu respons yang lambat.",
+        "approach": "Saya membangun aplikasi SwiftUI terpadu dengan backend Firebase. Fotografer mengunggah galeri portofolio dengan tag metadata, klien menelusuri dan memesan sesi melalui kalender dalam aplikasi, dan notifikasi push membuat kedua belah pihak tetap diperbarui tentang perubahan status pemesanan.",
+        "results": "Fotografer yang menggunakan ShutterSpace selama pengujian melaporkan pengurangan 50% dalam waktu manajemen pemesanan. Pengalaman portofolio-dan-pemesanan terpadu menghasilkan peningkatan 30% dalam konversi pemesanan dari tampilan portofolio.",
+        "role": "iOS Developer — Desain aplikasi penuh, integrasi Firebase, sistem pemesanan"
       }
     ]
   },

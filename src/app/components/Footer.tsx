@@ -36,7 +36,7 @@ export default function Footer() {
       style={{
         background: "#000000",
         fontFamily: "Inter, sans-serif",
-        borderTop: "1px solid #333333",
+        borderTop: "1px solid rgba(255, 255, 255, 0.08)",
         minHeight: "80vh",
       }}
     >
@@ -85,7 +85,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="px-6 py-3 text-[#A1A1A6] hover:text-white transition-colors"
             style={{
-              border: "1px solid #333333",
+              border: "1px solid rgba(255, 255, 255, 0.08)",
               fontSize: "10px",
               letterSpacing: "0.2em",
               textTransform: "uppercase",
@@ -99,7 +99,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="px-6 py-3 text-[#A1A1A6] hover:text-white transition-colors"
             style={{
-              border: "1px solid #333333",
+              border: "1px solid rgba(255, 255, 255, 0.08)",
               fontSize: "10px",
               letterSpacing: "0.2em",
               textTransform: "uppercase",

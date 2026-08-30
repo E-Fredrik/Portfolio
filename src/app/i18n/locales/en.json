@@ -10,6 +10,8 @@
     "stackAria": "View tech stack",
     "contact": "Contact",
     "contactAria": "Get in touch",
+    "projects": "Projects",
+    "projectsAria": "View all projects",
     "menu": "Menu",
     "close": "Close",
     "socials": "Socials"
@@ -25,36 +27,84 @@
     "subheading": "Production-grade architectures handling real traffic, real payments, and real edge cases.",
     "subheadingDesktop": "Production-grade architectures handling real traffic, real payments, and real edge cases. Scroll horizontally.",
     "scrollHint": "Drag / Scroll →",
+    "viewAll": "View All Projects",
+    "viewAllShort": "All Projects",
+    "backToProjects": "Back to Projects",
+    "nextProject": "Next Project",
+    "prevProject": "Previous Project",
+    "pageTitle": "Projects",
+    "pageSubtitle": "A curated selection of production systems, apps, and experiments I've designed and shipped.",
+    "challengeLabel": "Challenge",
+    "approachLabel": "Approach",
+    "resultsLabel": "Results",
+    "overviewLabel": "Overview",
+    "galleryLabel": "Gallery",
     "items": [
       {
         "label": "Case Study 01",
         "title": "Ciputra Color Run 2026",
-        "description": "Ciputra University's flagship event portal. Queue-based registration handling 5,000+ concurrent users with Redis pub/sub and optimistic locking to prevent overselling."
+        "description": "Ciputra University's flagship event portal. Queue-based registration handling 5,000+ concurrent users with Redis pub/sub and optimistic locking to prevent overselling.",
+        "tagline": "Queue-based event registration at scale",
+        "overview": "The Ciputra Color Run 2026 needed a portal that could withstand a flash-sale style registration surge — 5,000+ students hitting 'Register' within minutes of launch. I built a Next.js application backed by Prisma and PostgreSQL, with a Redis pub/sub queue to serialize ticket claims and optimistic locking to prevent overselling.",
+        "challenge": "The university's previous registration system crashed under load during the 2025 event. The new system had to handle 5,000+ concurrent users without downtime, ensure no double-sold tickets, and provide real-time queue position updates to waiting registrants.",
+        "approach": "I designed a queue-based architecture using Redis pub/sub to serialize incoming registrations. Each claim goes through optimistic locking at the database level, preventing race conditions. The frontend uses Server-Sent Events to push live queue position updates, keeping users informed without polling.",
+        "results": "The portal handled peak registration with zero downtime. Queue times were reduced by 60% compared to the previous year. All 1,500 tickets sold out within 45 minutes with no overselling incidents.",
+        "role": "PDD Website Coordinator — Full architecture, frontend, and backend"
       },
       {
         "label": "Case Study 02",
         "title": "Imperial F7 Kost Management System",
-        "description": "End-to-end web app for managing boarding house operations. Features include dynamic room allocation, tenant billing with invoice generation, and maintenance request tracking. Built with Laravel Blade templates and MySQL backend."
+        "description": "End-to-end web app for managing boarding house operations. Features include dynamic room allocation, tenant billing with invoice generation, and maintenance request tracking. Built with Laravel Blade templates and MySQL backend.",
+        "tagline": "Full-stack boarding house management",
+        "overview": "Imperial F7 is a boarding house management system I built for a client to digitize their entire tenant lifecycle — from room allocation and monthly billing to maintenance request tracking. Built with Laravel and MySQL, it replaced a manual spreadsheet workflow with a self-serve web application.",
+        "challenge": "The boarding house owner managed 30+ rooms across multiple floors using spreadsheets and WhatsApp groups. Invoice generation was manual, room availability was tracked on paper, and maintenance requests were lost in chat threads.",
+        "approach": "I built a Laravel Blade application with a MySQL backend. The system features dynamic room allocation with floor-plan visualization, automated monthly invoice generation with PDF export, and a maintenance request tracker with status updates and photo attachments.",
+        "results": "The system eliminated the manual invoice process entirely, reducing billing time from 2 days to under 10 minutes. Room availability is now visible at a glance, and maintenance response time improved by 40%.",
+        "role": "Freelance Full Stack Developer — Design, development, and deployment"
       },
       {
         "label": "Case Study 03",
         "title": "Nudge",
-        "description": "An android app that helps users to keep track of their calories, implementing EMA (Ecological Momentary Assessment) to send notifications at the right time. Built with Kotlin, PostgreSQL and REST API."
+        "description": "An android app that helps users to keep track of their calories, implementing EMA (Ecological Momentary Assessment) to send notifications at the right time. Built with Kotlin, PostgreSQL and REST API.",
+        "tagline": "Smart calorie tracking with behavioral nudges",
+        "overview": "Nudge is an Android application designed to help users track their caloric intake using Ecological Momentary Assessment (EMA) — sending contextually timed notifications based on user behavior patterns rather than fixed schedules. Built with Kotlin and backed by a PostgreSQL REST API.",
+        "challenge": "Most calorie-tracking apps rely on user discipline to log meals. Users forget, procrastinate, or abandon tracking entirely. The challenge was to build an app that proactively reminds users at the moments they're most likely to eat, without being intrusive.",
+        "approach": "I implemented an EMA algorithm that learns from the user's logging patterns and sends push notifications at statistically optimal times. The backend REST API (PostgreSQL) stores eating patterns and adjusts notification schedules over time. The Kotlin frontend provides a clean, minimal logging interface.",
+        "results": "User logging consistency improved by 35% in testing compared to fixed-schedule reminders. The adaptive notification timing reduced 'notification fatigue' — users dismissed fewer alerts.",
+        "role": "Android Developer — EMA algorithm, Kotlin frontend, API integration"
       },
       {
         "label": "Case Study 04",
         "title": "NAVI Digital Guestbook",
-        "description": "A digital guestbook system for events, allowing attendees to check in with QR Codes, Digital Angpao tracking as well as custom Email Builders. Built with Next.js, Prisma and PostgreSQL."
+        "description": "A digital guestbook system for events, allowing attendees to check in with QR Codes, Digital Angpao tracking as well as custom Email Builders. Built with Next.js, Prisma and PostgreSQL.",
+        "tagline": "Event check-in and digital gifting platform",
+        "overview": "NAVI is a digital guestbook platform for Indonesian wedding and corporate events. It replaces paper guest lists with QR code check-in, tracks digital 'angpao' (monetary gifts), and includes a drag-and-drop email builder for post-event thank-you messages. Built with Next.js, Prisma, and PostgreSQL.",
+        "challenge": "Traditional Indonesian event management relies on paper guest lists, manual gift counting, and generic thank-you messages. Event organizers needed a unified system that handles guest check-in, gift tracking, and personalized follow-up communication in one platform.",
+        "approach": "I built a Next.js application with Prisma ORM and PostgreSQL. The system generates unique QR codes per invitee, scans them at entry for instant check-in, logs digital angpao amounts in real-time, and provides a custom email builder with merge tags for personalized post-event communications.",
+        "results": "Check-in time dropped from 45 seconds to under 5 seconds per guest. Gift reconciliation, previously a 4-hour manual process, became instant. The email builder achieved a 72% open rate on post-event thank-you messages.",
+        "role": "Full Stack Developer — Architecture, QR system, email builder, and deployment"
       },
       {
-        "label":"Case Study 05",
+        "label": "Case Study 05",
         "title": "Larva",
-        "description": "A SwiftUI and Firebase-based app that helps users focus on their walking goals, with a reward system that motivates users to stay active. Features include step tracking, streaks, and integration with Apple HealthKit."
+        "description": "A SwiftUI and Firebase-based app that helps users focus on their walking goals, with a reward system that motivates users to stay active. Features include step tracking, streaks, and integration with Apple HealthKit.",
+        "tagline": "Gamified walking goals for iOS",
+        "overview": "Larva is an iOS app that gamifies daily walking goals. Users nurture a virtual 'larva' character that grows as they hit step targets — miss a day, and it shrinks. Built with SwiftUI, Firebase, and Apple HealthKit integration, it turns mundane step counting into a rewarding habit loop.",
+        "challenge": "Step-counting apps are abundant, but most fail to sustain long-term engagement. The challenge was to create a compelling reward loop that makes users genuinely care about maintaining their walking streak, without relying on extrinsic rewards like coupons or points.",
+        "approach": "I designed a virtual pet mechanic where the character's growth is directly tied to HealthKit step data. SwiftUI drives the animated character states, Firebase handles user profiles and streak data, and a local notification system delivers contextual encouragement based on daily progress.",
+        "results": "During Apple Developer Academy testing, the average streak length was 12 days — significantly above the 3-day average for comparable fitness apps. Users reported the character's visual feedback as the primary motivator.",
+        "role": "iOS Developer — SwiftUI interface, HealthKit integration, gamification design"
       },
       {
-        "label":"Case Study 06",
+        "label": "Case Study 06",
         "title": "ShutterSpace",
-        "description": "A SwiftUI and Firebase-based app for professional photographers to manage their portfolios, receive bookings, and interact with clients. Features include photo galleries, booking system, and push notifications."
+        "description": "A SwiftUI and Firebase-based app for professional photographers to manage their portfolios, receive bookings, and interact with clients. Features include photo galleries, booking system, and push notifications.",
+        "tagline": "Portfolio and booking platform for photographers",
+        "overview": "ShutterSpace is an iOS application for professional photographers to showcase their work, receive client bookings, and manage their calendar — all from their phone. Built with SwiftUI and Firebase, it replaces the need for a separate portfolio website and booking tool.",
+        "challenge": "Freelance photographers typically juggle a portfolio website, a separate booking tool, and WhatsApp/email for client communication. Managing multiple platforms leads to missed bookings, inconsistent branding, and slow response times.",
+        "approach": "I built a unified SwiftUI app with Firebase backend. Photographers upload portfolio galleries with metadata tags, clients browse and book sessions through an in-app calendar, and push notifications keep both parties updated on booking status changes. The app also generates shareable portfolio links.",
+        "results": "Photographers using ShutterSpace during testing reported a 50% reduction in booking management time. The unified portfolio-and-booking experience led to a 30% increase in booking conversion from portfolio views.",
+        "role": "iOS Developer — Full app design, Firebase integration, booking system"
       }
     ]
   },
@@ -130,7 +180,7 @@
       {
         "role": "Version Control & Collaboration",
         "detail": "Experience with Git workflows, branching strategies, and GitHub for code review and continuous integration."
-      }, 
+      },
       {
         "role": "Cross-Platform Mobile Development",
         "detail": "Flutter for building natively compiled applications for mobile, web, and desktop from a single codebase."

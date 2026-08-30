@@ -14,7 +14,10 @@ import { i18nConfig, type Locale } from "./i18n-config";
 import en from "./locales/en.json";
 import id from "./locales/id.json";
 
-const dictionaries: Record<Locale, Record<string, unknown>> = { en, id };
+const dictionaries: Record<Locale, Record<string, unknown>> = { 
+  en: en as unknown as Record<string, unknown>, 
+  id: id as unknown as Record<string, unknown> 
+};
 
 /* ---------- helpers ---------- */
 

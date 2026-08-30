@@ -1,0 +1,87 @@
+/* 3D and Motion Animations */
+
+@supports (animation-timeline: view()) {
+  .animate-3d-perspective {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+
+  .hover-lift {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+
+  .hover-lift:hover {
+    transform: translateZ(12px) translateY(-2px);
+  }
+
+  .smooth-borders {
+    border-color: rgba(255, 255, 255, 0.08);
+    transition: border-color 0.3s ease-out;
+  }
+
+  .smooth-borders:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  /* Fade and scale animations for cards */
+  @keyframes card-entrance {
+    from {
+      opacity: 0;
+      transform: scale(0.96) translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  .animate-card-entrance {
+    animation: card-entrance 0.6s ease-out forwards;
+  }
+
+  /* Subtle parallax depth effect */
+  @keyframes parallax-float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .parallax-float {
+    animation: parallax-float 6s ease-in-out infinite;
+  }
+
+  /* Glass morphism effect for overlays */
+  .glass-effect {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  /* Smooth text reveal */
+  @keyframes text-reveal {
+    from {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      opacity: 1;
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  .animate-text-reveal {
+    animation: text-reveal 0.8s ease-out forwards;
+  }
+}
+
+/* Reduce motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

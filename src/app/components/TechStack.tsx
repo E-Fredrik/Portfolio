@@ -120,7 +120,7 @@ export default function TechStack() {
                 key={item.name}
                 className={`stack-card ${colSpan} p-6 pb-16 lg:p-8 lg:pb-8 flex flex-col justify-between relative`}
                 style={{
-                  border: "1px solid #333333",
+                  border: "1px solid rgba(255, 255, 255, 0.08)",
                   marginTop: "-1px",
                   marginLeft: "-1px",
                   minHeight: item.size === "large" ? "360px" : "200px",

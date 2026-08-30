@@ -38,7 +38,7 @@ export function CursorReveal({ baseImage, revealImage }: CursorRevealProps) {
       className="w-full h-full relative cursor-none overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ border: "1px solid #333333" }}
+      style={{ border: "1px solid rgba(255, 255, 255, 0.08)" }}
     >
       {/* Base image (always visible) */}
       <img

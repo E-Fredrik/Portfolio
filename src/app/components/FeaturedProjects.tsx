@@ -1,45 +1,17 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
+import { motion } from "motion/react";
 import { useTranslation } from "../i18n/I18nContext";
+import { useProjects } from "../i18n/useProjects";
+import type { Project } from "../i18n/useProjects";
+import { ArrowButton } from "@/components/ui/ArrowButton";
+import { slideUp, slideUpStagger, scrollSlideUp, containerStagger, itemVariants } from "@/lib/animations";
 
 gsap.registerPlugin(ScrollTrigger);
-
-/* ------------------------------------------------------------------ */
-/*  Types                                                              */
-/* ------------------------------------------------------------------ */
-interface ProjectImage {
-  /** Path to the image (relative to /public, e.g. "/assets/images/navi-dashboard.png") */
-  src: string;
-  /** Alt text for accessibility */
-  alt: string;
-  /** Width of the image in pixels */
-  width: number;
-  /** Height of the image in pixels */
-  height: number;
-}
-
-interface Project {
-  /** Case study label, e.g. "Case Study 01" */
-  label: string;
-  /** Project title (supports line breaks via \n) */
-  title: string;
-  /** Short description paragraph */
-  description: string;
-  /** Tech stack tags displayed as badges */
-  tags: string[];
-  /** Images stacked vertically on the left side */
-  images: ProjectImage[];
-  browserUrl: string; // Optional URL to display in the browser frame
-}
-
-/** Translation shape for a single project item from the JSON dictionary */
-interface ProjectTranslation {
-  label: string;
-  title: string;
-  description: string;
-}
 
 function BrowserFrame({
   url,
@@ -55,17 +27,17 @@ function BrowserFrame({
   return (
     <div
       className="inline-block max-w-full align-top self-start"
-      style={{ border: "1px solid #333333", width: frameWidth }}
+      style={{ border: "1px solid rgba(255, 255, 255, 0.08)", width: frameWidth }}
     >
       <div
         className="flex items-center gap-2 px-5 py-3"
-        style={{ borderBottom: "1px solid #333333" }}
+        style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.08)" }}
       >
         {[0, 1, 2].map((i) => (
           <div
             key={i}
             className="w-[6px] h-[6px] rounded-full"
-            style={{ border: "1px solid #333333" }}
+            style={{ border: "1px solid rgba(255, 255, 255, 0.08)" }}
           />
         ))}
         <span
@@ -82,106 +54,14 @@ function BrowserFrame({
   );
 }
 
-const PROJECT_STATIC = [
-  {
-    tags: ["Next.js", "Prisma", "PostgreSQL"],
-    images: [
-      {
-        src: "./assets/images/cirun.jpg",
-        alt: "Color Run ticketing queue interface",
-        width: 520,
-        height: 340,
-      },
-    ],
-    browserUrl: "ciputrarun.com",
-  },
-  {
-    tags: ["Laravel Blade", "MySQL", "PHP", "Bootstrap JS & CSS"],
-    images: [
-      {
-        src: "./assets/images/imperial1.png",
-        alt: "Imperial F7 Kost Management System interface",
-        width: 520,
-        height: 340,
-      },
-      {
-        src: "./assets/images/imperial2.png",
-        alt: "Imperial F7 Kost Management System dashboard",
-        width: 520,
-        height: 340,
-      },
-    ],
-    browserUrl: "imperialf7.com",
-  },
-  {
-    tags: ["Kotlin", "PostgreSQL", "REST API"],
-    images: [
-      {
-        src: "./assets/images/nudge.png",
-        alt: "Nudge app interface",
-        width: 520,
-        height: 550,
-      },
-    ],
-    browserUrl: "nudgeapp.com",
-  },
-  {
-    tags: ["Next.js", "Prisma", "PostgreSQL"],
-    images: [
-      {
-        src: "./assets/images/navi.png",
-        alt: "NAVI Digital Guestbook dashboard interface",
-        width: 520,
-        height: 340,
-      },
-    ],
-    browserUrl: "naviguestbook.com",
-  },
-  {
-    tags: ["SwiftUI", "Firebase"],
-    images: [
-      {
-        src: "./assets/images/Larva.jpeg",
-        alt: "Larva app interface",
-        width: 250,
-        height: 500,
-      },
-    ],
-    browserUrl: "larvaapp.com",
-  },
-  {
-    tags: ["SwiftUI", "Firebase"],
-    images: [
-      {
-        src: "./assets/images/ShutterSpace1.jpeg",
-        alt: "ShutterSpace app interface",
-        width: 250,
-        height: 500,
-      },
-      {
-        src: "./assets/images/ShutterSpace2.jpeg",
-        alt: "ShutterSpace app interface",
-        width: 250,
-        height: 500,
-      }
-    ],
-    browserUrl: "shutterspace.com",
-  }
-];
-
-/* ------------------------------------------------------------------ */
-/*  Project Card (shared between mobile & desktop)                     */
-/* ------------------------------------------------------------------ */
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const isEven = index % 2 === 0;
   const isPortraitSet = project.images.length > 1 && project.images.every((img) => img.height > img.width);
 
-  // Render title with \n support
   const titleLines = project.title.split("\n");
 
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-0">
-      {/* Images Column — on left for even, on right for odd (desktop) */}
       <div
         className={`flex ${isPortraitSet ? "flex-row flex-wrap items-end" : "flex-col items-start"} gap-4 p-8 lg:py-12 lg:pl-8 lg:pr-4 justify-center ${
           !isEven ? "lg:order-2" : ""
@@ -209,12 +89,11 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         ))}
       </div>
 
-      {/* Description Column */}
       <div
         className={`p-8 lg:p-12 flex flex-col justify-center ${
           !isEven ? "lg:order-1" : ""
         }`}
-        style={{ borderLeft: isEven ? "1px solid #333333" : "none", borderRight: !isEven ? "1px solid #333333" : "none" }}
+        style={{ borderLeft: isEven ? "1px solid rgba(255, 255, 255, 0.08)" : "none", borderRight: !isEven ? "1px solid rgba(255, 255, 255, 0.08)" : "none" }}
       >
         <div>
           <p
@@ -256,7 +135,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               key={t}
               className="px-4 py-2 text-[#A1A1A6]"
               style={{
-                border: "1px solid #333333",
+                border: "1px solid rgba(255, 255, 255, 0.08)",
                 fontSize: "9px",
                 letterSpacing: "0.15em",
               }}
@@ -270,26 +149,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  Main component                                                    */
-/* ------------------------------------------------------------------ */
-export default function Projects() {
+export default function FeaturedProjects() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const { t, tArray, locale } = useTranslation();
+  const { t, locale } = useTranslation();
+  const { getFeatured } = useProjects();
+  const featuredProjects = getFeatured();
 
-  // Merge translated text with static project data
-  const translatedItems = tArray<ProjectTranslation>("projects.items");
-  const PROJECTS: Project[] = PROJECT_STATIC.map((staticData, i) => ({
-    ...staticData,
-    label: translatedItems[i]?.label ?? `Case Study ${String(i + 1).padStart(2, "0")}`,
-    title: translatedItems[i]?.title ?? "",
-    description: translatedItems[i]?.description ?? "",
-  }));
-
-  // 1 intro + N projects
-  const totalPanels = 1 + PROJECTS.length;
+  // 1 intro + N projects + 1 CTA panel
+  const totalPanels = 1 + featuredProjects.length + 1;
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 1024);
@@ -299,7 +168,7 @@ export default function Projects() {
   }, []);
 
   useEffect(() => {
-    if (isMobile) return; // Skip horizontal scroll on mobile
+    if (isMobile) return;
 
     const ctx = gsap.context(() => {
       const track = trackRef.current;
@@ -324,12 +193,8 @@ export default function Projects() {
     return () => ctx.revert();
   }, [isMobile, totalPanels, locale]);
 
-  // Parse heading with \n support
   const headingLines = t("projects.heading").split("\n");
 
-  /* ---------------------------------------------------------------- */
-  /*  Mobile: vertical stacked layout                                  */
-  /* ---------------------------------------------------------------- */
   if (isMobile) {
     return (
       <section
@@ -338,25 +203,36 @@ export default function Projects() {
         style={{ background: "#000000", fontFamily: "Inter, sans-serif" }}
       >
         {/* INTRO */}
-        <div className="mb-16 max-w-[560px]">
-          <p
+        <motion.div 
+          className="mb-24 max-w-[560px]"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.p
             className="text-[#A1A1A6]"
             style={{
               fontSize: "10px",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
             }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
           >
             {t("projects.sectionLabel")}
-          </p>
-          <h2
-            className="text-white mt-4"
+          </motion.p>
+          <motion.h2
+            className="text-white mt-6"
             style={{
               fontSize: "clamp(32px, 8vw, 64px)",
               fontWeight: 700,
               letterSpacing: "-0.04em",
               lineHeight: 1,
             }}
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
             {headingLines.map((line, i) => (
               <span key={i}>
@@ -364,32 +240,41 @@ export default function Projects() {
                 {i < headingLines.length - 1 && <br />}
               </span>
             ))}
-          </h2>
-          <p
+          </motion.h2>
+          <motion.p
             className="text-[#A1A1A6] mt-6"
             style={{ fontSize: "13px", lineHeight: 1.7 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
           >
             {t("projects.subheading")}
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
         {/* PROJECT CARDS */}
-        {PROJECTS.map((project, index) => (
-          <div
+        {featuredProjects.map((project, index) => (
+          <motion.div
             key={project.label}
             className="mb-16 pt-8"
-            style={{ borderTop: "1px solid #333333" }}
+            style={{ borderTop: "1px solid rgba(255, 255, 255, 0.08)" }}
+            initial={{ opacity: 0, y: 32 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: index * 0.1 }}
           >
             <ProjectCard project={project} index={index} />
-          </div>
+          </motion.div>
         ))}
+        
+        {/* MOBILE CTA */}
+        <div className="pt-8" style={{ borderTop: "1px solid rgba(255, 255, 255, 0.08)" }}>
+          <ArrowButton href="/projects">{t("projects.viewAll")}</ArrowButton>
+        </div>
       </section>
     );
   }
 
-  /* ---------------------------------------------------------------- */
-  /*  Desktop: horizontal scroll layout                                */
-  /* ---------------------------------------------------------------- */
   return (
     <section
       ref={sectionRef}
@@ -402,26 +287,42 @@ export default function Projects() {
         style={{ width: `${totalPanels * 100}vw` }}
       >
         {/* INTRO PANEL */}
-        <div className="w-screen h-full flex items-end px-16 pb-24 shrink-0">
-          <div className="max-w-[560px]">
-            <p
+        <motion.div 
+          className="w-screen h-full flex items-end px-16 pb-24 shrink-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.div 
+            className="max-w-[560px]"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          >
+            <motion.p
               className="text-[#A1A1A6]"
               style={{
                 fontSize: "10px",
                 letterSpacing: "0.3em",
                 textTransform: "uppercase",
               }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
             >
               {t("projects.sectionLabel")}
-            </p>
-            <h2
-              className="text-white mt-4"
+            </motion.p>
+            <motion.h2
+              className="text-white mt-6"
               style={{
                 fontSize: "clamp(36px, 5vw, 64px)",
                 fontWeight: 700,
                 letterSpacing: "-0.04em",
                 lineHeight: 1,
               }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
             >
               {headingLines.map((line, i) => (
                 <span key={i}>
@@ -429,14 +330,22 @@ export default function Projects() {
                   {i < headingLines.length - 1 && <br />}
                 </span>
               ))}
-            </h2>
-            <p
+            </motion.h2>
+            <motion.p
               className="text-[#A1A1A6] mt-6"
               style={{ fontSize: "13px", lineHeight: 1.7 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
             >
               {t("projects.subheadingDesktop")}
-            </p>
-            <div className="mt-8 flex items-center gap-3">
+            </motion.p>
+            <motion.div 
+              className="mt-8 flex items-center gap-3"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            >
               <div className="w-12 h-px" style={{ background: "#333333" }} />
               <span
                 className="text-[#A1A1A6]"
@@ -448,12 +357,12 @@ export default function Projects() {
               >
                 {t("projects.scrollHint")}
               </span>
-            </div>
-          </div>
-        </div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
 
         {/* PROJECT PANELS */}
-        {PROJECTS.map((project, index) => (
+        {featuredProjects.map((project, index) => (
           <div
             key={project.label}
             className="w-screen h-full flex items-center shrink-0 px-16"
@@ -463,6 +372,24 @@ export default function Projects() {
             </div>
           </div>
         ))}
+        
+        {/* CTA PANEL */}
+        <div className="w-screen h-full flex items-center justify-center shrink-0 px-16">
+          <div className="flex flex-col items-center">
+            <h2
+              className="text-white mb-8"
+              style={{
+                fontSize: "clamp(36px, 5vw, 64px)",
+                fontWeight: 700,
+                letterSpacing: "-0.04em",
+                lineHeight: 1,
+              }}
+            >
+              {t("projects.viewAll")}
+            </h2>
+            <ArrowButton href="/projects">{t("projects.viewAllShort")}</ArrowButton>
+          </div>
+        </div>
       </div>
     </section>
   );
