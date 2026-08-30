@@ -43,13 +43,20 @@ interface ProjectTranslation {
 
 function BrowserFrame({
   url,
+  width,
   children,
 }: {
   url: string;
+  width?: number;
   children: React.ReactNode;
 }) {
+  const frameWidth = width ? `${width}px` : "100%";
+
   return (
-    <div className="w-full max-w-[520px]" style={{ border: "1px solid #333333" }}>
+    <div
+      className="inline-block max-w-full align-top self-start"
+      style={{ border: "1px solid #333333", width: frameWidth }}
+    >
       <div
         className="flex items-center gap-2 px-5 py-3"
         style={{ borderBottom: "1px solid #333333" }}
@@ -62,21 +69,19 @@ function BrowserFrame({
           />
         ))}
         <span
-          className="text-[#A1A1A6] ml-4"
+          className="text-[#A1A1A6] ml-4 truncate"
           style={{ fontSize: "10px", fontFamily: "monospace" }}
         >
           {url}
         </span>
       </div>
-      <div className="p-6">{children}</div>
+      <div className="p-6" style={{ width: "100%" }}>
+        {children}
+      </div>
     </div>
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  ✏️  STATIC PROJECT DATA (language-independent fields)              */
-/*  - tags, images, and browserUrl don't need translation              */
-/* ------------------------------------------------------------------ */
 const PROJECT_STATIC = [
   {
     tags: ["Next.js", "Prisma", "PostgreSQL"],
@@ -132,6 +137,36 @@ const PROJECT_STATIC = [
     ],
     browserUrl: "naviguestbook.com",
   },
+  {
+    tags: ["SwiftUI", "Firebase"],
+    images: [
+      {
+        src: "./assets/images/Larva.jpeg",
+        alt: "Larva app interface",
+        width: 250,
+        height: 500,
+      },
+    ],
+    browserUrl: "larvaapp.com",
+  },
+  {
+    tags: ["SwiftUI", "Firebase"],
+    images: [
+      {
+        src: "./assets/images/ShutterSpace1.jpeg",
+        alt: "ShutterSpace app interface",
+        width: 250,
+        height: 500,
+      },
+      {
+        src: "./assets/images/ShutterSpace2.jpeg",
+        alt: "ShutterSpace app interface",
+        width: 250,
+        height: 500,
+      }
+    ],
+    browserUrl: "shutterspace.com",
+  }
 ];
 
 /* ------------------------------------------------------------------ */
@@ -139,6 +174,7 @@ const PROJECT_STATIC = [
 /* ------------------------------------------------------------------ */
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const isEven = index % 2 === 0;
+  const isPortraitSet = project.images.length > 1 && project.images.every((img) => img.height > img.width);
 
   // Render title with \n support
   const titleLines = project.title.split("\n");
@@ -146,29 +182,29 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-0">
       {/* Images Column — on left for even, on right for odd (desktop) */}
-      
       <div
-        className={`flex flex-col gap-4 p-8 lg:p-12 justify-center ${
+        className={`flex ${isPortraitSet ? "flex-row flex-wrap items-end" : "flex-col items-start"} gap-4 p-8 lg:py-12 lg:pl-8 lg:pr-4 justify-center ${
           !isEven ? "lg:order-2" : ""
         }`}
       >
         {project.images.map((img, imgIdx) => (
-          <BrowserFrame key={imgIdx} url={project.browserUrl}>
-          <div
-            className="relative w-full overflow-hidden"
-            style={{
-              maxWidth: `${img.width}px`,
-              aspectRatio: `${img.width} / ${img.height}`,
-            }}
-          >
-            <Image
-              src={img.src}
-              alt={img.alt}
-              fill
-              sizes="(max-width: 1024px) 100vw, 520px"
-              style={{ objectFit: "cover" }}
-            />
-          </div>
+          <BrowserFrame key={imgIdx} url={project.browserUrl} width={img.width}>
+            <div
+              className="relative w-full overflow-hidden"
+              style={{
+                width: "100%",
+                maxWidth: `${img.width}px`,
+                aspectRatio: `${img.width} / ${img.height}`,
+              }}
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                sizes="(max-width: 1024px) 100vw, 520px"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
           </BrowserFrame>
         ))}
       </div>
@@ -262,8 +298,6 @@ export default function Projects() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Rebuild the horizontal-scroll pin when locale changes so GSAP's
-  // reparented DOM stays in sync with React's virtual DOM.
   useEffect(() => {
     if (isMobile) return; // Skip horizontal scroll on mobile
 

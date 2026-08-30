@@ -45,6 +45,16 @@
         "label": "Case Study 04",
         "title": "NAVI Digital Guestbook",
         "description": "A digital guestbook system for events, allowing attendees to check in with QR Codes, Digital Angpao tracking as well as custom Email Builders. Built with Next.js, Prisma and PostgreSQL."
+      },
+      {
+        "label":"Case Study 05",
+        "title": "Larva",
+        "description": "A SwiftUI and Firebase-based app that helps users focus on their walking goals, with a reward system that motivates users to stay active. Features include step tracking, streaks, and integration with Apple HealthKit."
+      },
+      {
+        "label":"Case Study 06",
+        "title": "ShutterSpace",
+        "description": "A SwiftUI and Firebase-based app for professional photographers to manage their portfolios, receive bookings, and interact with clients. Features include photo galleries, booking system, and push notifications."
       }
     ]
   },
@@ -52,6 +62,16 @@
     "sectionLabel": "004 / Experience & Leadership",
     "heading": "Trajectory",
     "items": [
+      {
+        "title": "Freelancer Full Stack Developer",
+        "org": "Self-Employed",
+        "detail": "Developed and maintained web applications for clients, delivering according to specifications and timelines."
+      },
+      {
+        "title": "Apple Developer Academy Learner @ UC Surabaya Cohort 2027",
+        "org": "Apple",
+        "detail": "Selected as a learner to join the Apple Developer Academy at Universitas Ciputra Surabaya, a prestigious program that nurtures the next generation of iOS developers and tech innovators."
+      },
       {
         "title": "Part-time Coding Mentor",
         "org": "Timedoor Academy",
@@ -110,13 +130,17 @@
       {
         "role": "Version Control & Collaboration",
         "detail": "Experience with Git workflows, branching strategies, and GitHub for code review and continuous integration."
+      }, 
+      {
+        "role": "Cross-Platform Mobile Development",
+        "detail": "Flutter for building natively compiled applications for mobile, web, and desktop from a single codebase."
       }
     ]
   },
   "footer": {
     "sectionLabel": "005 / Contact",
     "heading": "Initiate.",
-    "copyright": "© 2026 — Engineered with zero dependencies on luck."
+    "copyright": "© 2026 — Only by His grace"
   },
   "loading": {
     "loading": "Loading"

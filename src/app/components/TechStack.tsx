@@ -15,6 +15,7 @@ const STACK_STATIC = [
   { name: "PostgreSQL/MySQL", snippet: "CREATE INDEX CONCURRENTLY", size: "medium" },
   { name: "HTML/CSS/JS", snippet: "document.querySelector()", size: "small" },
   { name: "Git/GitHub", snippet: "git push origin main", size: "small" },
+  { name: "Flutter", snippet: "flutter run --release", size: "medium" },
 ];
 
 /** Translation shape for a single stack item from the JSON dictionary */

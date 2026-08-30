@@ -7,7 +7,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 /** Static data that doesn't need translation */
 const ROLE_PERIODS = [
+  "January 2026 — Present",
   "June 2024 — Present",
+  "March 2027 - December 2027",
   "May 2025 — May 2026",
   "October 2025 — April 2026",
   "May 2024 — May 2024",

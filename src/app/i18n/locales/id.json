@@ -45,6 +45,16 @@
         "label": "Studi Kasus 04",
         "title": "NAVI Digital Guestbook",
         "description": "Sistem buku tamu digital untuk acara, memungkinkan tamu check-in dengan QR Code, pelacakan Angpao Digital serta Email Builder kustom. Dibangun dengan Next.js, Prisma dan PostgreSQL."
+      },
+      {
+        "label":"Studi Kasus 05",
+        "title": "Larva",
+        "description": "Aplikasi berbasis SwiftUI dan Firebase agar pengguna dapat fokus akan target jalan kaki mereka, dengan sistem reward yang memotivasi pengguna untuk tetap aktif. Fitur termasuk pelacakan langkah, streak, dan integrasi dengan Apple HealthKit."
+      },
+      {
+        "label":"Studi Kasus 06",
+        "title": "ShutterSpace",
+        "description": "Aplikasi berbasis SwiftUI dan Firebase untuk fotografer profesional agar dapat mengelola portofolio mereka, menerima pemesanan, dan berinteraksi dengan klien. Fitur termasuk galeri foto, sistem pemesanan, dan notifikasi push."
       }
     ]
   },
@@ -52,6 +62,11 @@
     "sectionLabel": "004 / Pengalaman & Kepemimpinan",
     "heading": "Lintasan",
     "items": [
+      {
+        "title": "Apple Developer Academy Learner @ UC Surabaya Cohort 2027",
+        "org": "Apple",
+        "detail": "Terpilih sebagai salah satu pelajar untuk bergabung dengan Apple Developer Academy di Universitas Ciputra Surabaya, sebuah program bergengsi yang membina generasi berikutnya dari pengembang iOS dan inovator teknologi."
+      },
       {
         "title": "Mentor Pemrograman Paruh Waktu",
         "org": "Timedoor Academy",
@@ -110,13 +125,17 @@
       {
         "role": "Version Control & Kolaborasi",
         "detail": "Pengalaman dengan alur kerja Git, strategi branching, dan GitHub untuk code review dan continuous integration."
+      },
+      {
+        "role": "Pengembangan Mobile Cross-Platform",
+        "detail": "Flutter untuk membangun aplikasi yang dikompilasi secara native untuk mobile, web, dan desktop dari satu basis kode."
       }
     ]
   },
   "footer": {
     "sectionLabel": "005 / Kontak",
     "heading": "Mulai.",
-    "copyright": "© 2026 — Direkayasa tanpa ketergantungan pada keberuntungan."
+    "copyright": "© 2026 — Hanya dengan rahmat-Nya"
   },
   "loading": {
     "loading": "Memuat"
