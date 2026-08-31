@@ -29,14 +29,25 @@ Apple-inspired minimalist portfolio with refined interactions and subtle 3D dept
 - **3XL:** 64px
 
 ## Border Radius
-- **Cards:** 12px (Apple-inspired, not overly rounded)
-- **Small elements:** 8px
-- **Buttons:** 8px
+- **Cards (outer):** 20px (Apple-inspired, provides breathing room)
+- **Media frame (nested):** 14px (concentric nesting: child radius should be ~6px smaller than parent)
+- **Small elements & tags:** 8px
+- **Primary CTAs (buttons):** Pill shape (999px border-radius) for strong visual emphasis
+
+The nested ratio (6px difference) creates concentric corners that read as intentional nesting, not parallel edges. Pills are reserved exclusively for primary call-to-action buttons; tags and secondary elements use the 8px scale to avoid visual competition with any button UI baked into screenshots.
 
 ## Shadows & Depth
 - **None on cards** (Apple aesthetic: flat with border instead of shadow)
 - **Subtle hover elevation:** transform: scale(1.01-1.02)
 - **3D effects:** use perspective and transform-origin for depth
+
+## Media Framing
+Every project screenshot across the site is wrapped in `BrowserFrame`, a reusable component that renders a macOS-style window chrome (three dots + URL bar + content area). This provides two benefits:
+
+1. **Consistent visual language:** All project media, regardless of page (home or dedicated /projects), are clearly framed as "windows into websites" using the same component.
+2. **UI separation:** The frame acts as a visual boundary between raw screenshot pixels and any overlay text or interactive chrome, preventing collision between your portfolio UI and the UI baked into screenshots.
+
+The `BrowserFrame` uses the nested 14px radius and hairline border (1px, rgba(255, 255, 255, 0.08)) to maintain visual hierarchy within the 20px outer card frame. Import from `@/components/ui/BrowserFrame` and pass the project's `browserUrl` and optional fixed `width` (clamped to 520px max for grid layouts).
 
 ## Component Patterns
 

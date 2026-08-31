@@ -9,50 +9,10 @@ import { useTranslation } from "../i18n/I18nContext";
 import { useProjects } from "../i18n/useProjects";
 import type { Project } from "../i18n/useProjects";
 import { ArrowButton } from "@/components/ui/ArrowButton";
+import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { slideUp, slideUpStagger, scrollSlideUp, containerStagger, itemVariants } from "@/lib/animations";
 
 gsap.registerPlugin(ScrollTrigger);
-
-function BrowserFrame({
-  url,
-  width,
-  children,
-}: {
-  url: string;
-  width?: number;
-  children: React.ReactNode;
-}) {
-  const frameWidth = width ? `${width}px` : "100%";
-
-  return (
-    <div
-      className="inline-block max-w-full align-top self-start"
-      style={{ border: "1px solid rgba(255, 255, 255, 0.08)", width: frameWidth }}
-    >
-      <div
-        className="flex items-center gap-2 px-5 py-3"
-        style={{ borderBottom: "1px solid rgba(255, 255, 255, 0.08)" }}
-      >
-        {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            className="w-[6px] h-[6px] rounded-full"
-            style={{ border: "1px solid rgba(255, 255, 255, 0.08)" }}
-          />
-        ))}
-        <span
-          className="text-[#A1A1A6] ml-4 truncate"
-          style={{ fontSize: "10px", fontFamily: "monospace" }}
-        >
-          {url}
-        </span>
-      </div>
-      <div className="p-6" style={{ width: "100%" }}>
-        {children}
-      </div>
-    </div>
-  );
-}
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const isEven = index % 2 === 0;
