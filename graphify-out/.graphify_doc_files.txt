@@ -1,0 +1,5 @@
+/Users/elifele/Documents/Miscellaneous/portfolio/.github/workflows/nextjs.yml
+/Users/elifele/Documents/Miscellaneous/portfolio/AGENTS.md
+/Users/elifele/Documents/Miscellaneous/portfolio/CLAUDE.md
+/Users/elifele/Documents/Miscellaneous/portfolio/DESIGN.md
+/Users/elifele/Documents/Miscellaneous/portfolio/README.md

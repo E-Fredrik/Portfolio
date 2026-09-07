@@ -1,0 +1,15 @@
+/Users/elifele/Documents/Miscellaneous/portfolio/public/assets/images/Hero.JPG
+/Users/elifele/Documents/Miscellaneous/portfolio/public/assets/images/Larva.jpeg
+/Users/elifele/Documents/Miscellaneous/portfolio/public/assets/images/Logo.png
+/Users/elifele/Documents/Miscellaneous/portfolio/public/assets/images/ShutterSpace1.jpeg
+/Users/elifele/Documents/Miscellaneous/portfolio/public/assets/images/ShutterSpace2.jpeg
+/Users/elifele/Documents/Miscellaneous/portfolio/public/assets/images/cirun.jpg
+/Users/elifele/Documents/Miscellaneous/portfolio/public/assets/images/imperial1.png
+/Users/elifele/Documents/Miscellaneous/portfolio/public/assets/images/imperial2.png
+/Users/elifele/Documents/Miscellaneous/portfolio/public/assets/images/navi.png
+/Users/elifele/Documents/Miscellaneous/portfolio/public/assets/images/nudge.png
+/Users/elifele/Documents/Miscellaneous/portfolio/public/file.svg
+/Users/elifele/Documents/Miscellaneous/portfolio/public/globe.svg
+/Users/elifele/Documents/Miscellaneous/portfolio/public/next.svg
+/Users/elifele/Documents/Miscellaneous/portfolio/public/vercel.svg
+/Users/elifele/Documents/Miscellaneous/portfolio/public/window.svg
